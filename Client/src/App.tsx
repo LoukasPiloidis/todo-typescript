@@ -3,7 +3,7 @@ import { AddItemForm } from "./components/AddItemForm";
 import { ItemList } from "./components/ItemList";
 
 const initialItems: Array<Item> = [
-  {text: 'walk the dog', complete: true},
+  {text: 'walk the dog', complete: true, subItems: {text: 'text2', complete: false}},
   {text: 'write app', complete: false}
 ];
 
