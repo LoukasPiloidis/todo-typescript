@@ -5,34 +5,33 @@ import { io, Socket } from "socket.io-client";
 
 const SOCKET_URL = process.env.SOCKET_URL || 'http://localhost:4000';
 
-
-// const initialItems: Array<Item> = [
-//   {text: 'walk the dog', complete: true, subItems: {text: 'text2', complete: false}},
-//   {text: 'write app', complete: false}
-// ];
-
 const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(SOCKET_URL);
 
 const App = () => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<Array<Item>>([]);
 
-  socket.on("items", (item: any) => {
-  setItems(item);
+  socket.on("items", (itemList: Array<Item>) => {
+    setItems(itemList);
   });
 
-  // const toggleComplete: ToggleComplete = selectedItem => {
-  //   const newItems = items.map(item => item === selectedItem ? {...item, complete: !item.complete} : item);
-  //   setItems(newItems);
-  // };
+  const toggleComplete = (clickedItem: any) => {
+    const selectedItem: string = clickedItem.target.textContent
+    socket.emit('changeStatus', selectedItem);
+    
+    // const newItems = items.map(item => item === selectedItem ? {...item, complete: !item.complete} : item);
+    // setItems(newItems);
+  };
 
-  // const addItem: AddItem = newItem => {
-  //   newItem.trim() !== '' && setItems([...items, {text: newItem, complete: false }])
-  // }
+  const addItem = (newItem: string) => {
+    socket.emit('addItem', newItem);
+    
+    // newItem.trim() !== '' && setItems([...items, {text: newItem, complete: false }])
+  }
 
   return(
     <React.Fragment>
-      <ItemList items={items} />
-      <AddItemForm />
+      <ItemList items={items} toggleComplete={toggleComplete} />
+      <AddItemForm addItem={addItem} />
     </React.Fragment>
   ) 
 }

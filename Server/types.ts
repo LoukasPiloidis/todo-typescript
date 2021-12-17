@@ -3,6 +3,7 @@ export interface ServerToClientEvents {
   basicEmit: (a: number, b: string, c: Buffer) => void;
   withAck: (d: string, callback: (e: number) => void) => void;
   items: (items: Array<Item>) => [];
+  addItems: (newItem: object) => void;
 }
 
 export interface ClientToServerEvents {

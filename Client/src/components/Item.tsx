@@ -1,19 +1,17 @@
 import React from "react";
+import '../styles/Item.css';
 
 interface ItemProps {
   item: Item;
-  // toggleComplete: ToggleComplete;
+  toggleComplete: ToggleComplete;
 }
 
-export const Item: React.FC<ItemProps> = ({
-  item,
-  // toggleComplete
-}) => {
+export const Item: React.FC<ItemProps> = ({ item, toggleComplete }) => {
   return (
     <li>
-      <label className={item.complete ? "complete" : undefined}>
+      <p className={item.complete ? "complete" : undefined} onClick={toggleComplete}>
         {item.text}
-      </label>
+      </p>
     </li>
   );
 };

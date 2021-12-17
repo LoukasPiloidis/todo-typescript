@@ -1,26 +1,26 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 
 interface AddItemFormProps {
-  // addItem: AddItem;
+  addItem: AddItem;
 }
 
-export const AddItemForm: React.FC<AddItemFormProps> = () => {
+export const AddItemForm: React.FC<AddItemFormProps> = ({ addItem }) => {
   const [newItem, setNewItem] = useState<string>('');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNewItem(e.target.value);
   };
 
-  // const handleSubmit = (e: FormEvent<HTMLButtonElement>) => {
-  //   e.preventDefault();
-  //   addItem(newItem);
-  //   setNewItem('');
-  // };
+  const handleSubmit = (e: FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    addItem(newItem);
+    setNewItem('');
+  };
 
   return (
     <form>
       <input type="text" value={newItem} onChange={handleChange} />
-      <button type="submit" >
+      <button type="submit" onClick={handleSubmit}>
         Add Todo
       </button>
     </form>
