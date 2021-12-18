@@ -9,6 +9,11 @@ let initialItems: Array<Item> = [
   {text: 'it is working', complete: false}
 ];
 
+const filterItems = (value: boolean) => {
+  const filteredItems = initialItems.filter(item => item.complete === value);
+  io.emit('returnFilteredData', filteredItems);
+};
+
 const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(port, {
   cors: {origin: ['http://localhost:3000']}
 });
@@ -28,6 +33,14 @@ io.on("connection", (socket: Socket) => {
     io.emit('items', initialItems);
   });
 
+  socket.on('filterCompleted', () => {
+    filterItems(true);
   });
+
+  socket.on('filterPending', () => {
+    filterItems(false);
+  });
+
+});
 
 // socket.emit('send-items', initialItems);

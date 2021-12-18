@@ -14,10 +14,13 @@ interface ServerToClientEvents {
   basicEmit: (a: number, b: string, c: Buffer) => void;
   withAck: (d: string, callback: (e: number) => void) => void;
   items: (itemList: Array<Item>) => void;
+  returnFilteredData: (filteredData: Array<Item>) => void;
 }
 
 interface ClientToServerEvents {
   hello: () => void;
   addItem: (newItem: string) => void;
-  changeStatus: (updatedItem: string) => void;
+  changeStatus: (selectedItem: string | null) => void;
+  filterCompleted: () => void;
+  filterPending: () => void;
 }

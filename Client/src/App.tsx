@@ -14,24 +14,40 @@ const App = () => {
     setItems(itemList);
   });
 
-  const toggleComplete = (clickedItem: any) => {
-    const selectedItem: string = clickedItem.target.textContent
+  const toggleComplete = (e: React.MouseEvent<HTMLParagraphElement>) => {
+    const selectedItem: string | null = e.currentTarget.textContent;
     socket.emit('changeStatus', selectedItem);
-    
-    // const newItems = items.map(item => item === selectedItem ? {...item, complete: !item.complete} : item);
-    // setItems(newItems);
   };
 
   const addItem = (newItem: string) => {
     socket.emit('addItem', newItem);
     
     // newItem.trim() !== '' && setItems([...items, {text: newItem, complete: false }])
-  }
+  };
+
+  const handleToggleButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (e.currentTarget.textContent === 'Completed') {
+      socket.emit("filterCompleted");
+      socket.on('returnFilteredData', (filteredData: any) => {
+        setItems(filteredData);
+      });
+    };
+    if (e.currentTarget.textContent === 'Pending') {
+      socket.emit("filterPending");
+      socket.on('returnFilteredData', (filteredData: any) => {
+        setItems(filteredData);
+      });
+    };
+  };
 
   return(
     <React.Fragment>
-      <ItemList items={items} toggleComplete={toggleComplete} />
-      <AddItemForm addItem={addItem} />
+      <>
+        <button type="submit" onClick={handleToggleButton} >Completed</button>
+        <button type="submit" onClick={handleToggleButton} >Pending</button>
+        <ItemList items={items} toggleComplete={toggleComplete} />
+        <AddItemForm addItem={addItem} />
+      </>
     </React.Fragment>
   ) 
 }
