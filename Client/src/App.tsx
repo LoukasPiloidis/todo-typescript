@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { AddItemForm } from "./components/AddItemForm";
 import { ItemList } from "./components/ItemList";
 import { io, Socket } from "socket.io-client";
+import './styles/App.css';
 
 const SOCKET_URL = process.env.SOCKET_URL || 'http://localhost:4000';
 
@@ -43,10 +44,11 @@ const App = () => {
   return(
     <React.Fragment>
       <>
+        <h1>Todo app on Steroids</h1>
         <button type="submit" onClick={handleToggleButton} >Completed</button>
         <button type="submit" onClick={handleToggleButton} >Pending</button>
-        <ItemList items={items} toggleComplete={toggleComplete} />
         <AddItemForm addItem={addItem} />
+        <ItemList items={items} toggleComplete={toggleComplete} />
       </>
     </React.Fragment>
   ) 

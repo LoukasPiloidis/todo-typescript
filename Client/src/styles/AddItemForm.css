@@ -1,0 +1,30 @@
+.add-form {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+}
+
+.form__title {
+  width: 100%;
+  padding: 0.3rem;
+  border-radius: 4px;
+  text-align: center;
+  margin-bottom: 0.3rem;
+  border: 1px solid #0B4AC6;
+}
+
+.form__title:focus {
+  outline: none;
+  box-shadow: 0 0 3px #0B4AC6;
+}
+
+.form__add-btn {
+  padding: 0.2rem;
+  border-radius: 4px;
+  width: 20%;
+  background-color: #0B4AC6;
+  color: white;
+  font-size: 18px;
+}
