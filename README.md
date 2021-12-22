@@ -5,12 +5,6 @@
   3. Users can collaborate on the same list from different machines.
 
 # Technologies used
-  1. Front End
-    A. React/typescript
-    B. socket.io-client
-  2. Back End
-    A. NodeJS
-    B. Express
-    C. socket.io
-  3. Database
-    A. MongoDB
+  1. Front End: React/typescript, socket.io-client
+  2. Back End: NodeJS, Express, socket.io
+  3. Database: MongoDB
