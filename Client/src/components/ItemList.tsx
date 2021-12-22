@@ -1,5 +1,6 @@
 import React from "react";
 import { Item } from "./Item";
+import '../styles/ItemList.css';
 
 interface ItemListProps {
   items: Array<Item>;
@@ -8,7 +9,7 @@ interface ItemListProps {
 
 export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete }) => {
   return (
-    <ul>
+    <ul className='items-container'>
       {items.map(item => (
         <Item key={item.title} item={item} toggleComplete={toggleComplete} />
       ))}

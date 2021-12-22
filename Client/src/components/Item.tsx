@@ -8,11 +8,12 @@ interface ItemProps {
 
 export const Item: React.FC<ItemProps> = ({ item, toggleComplete }) => {
   return (
-    <li>
-      <h2 className={item.complete ? "complete" : undefined} onClick={toggleComplete}>
+    <li className={`item-main ${item.complete ? "complete" : ''}`}>
+      <h2 onClick={toggleComplete}>
         {item.title}
       </h2>
       <p>{item.desc}</p>
+      <button type='submit' className='edit-btn'>Edit</button>
     </li>
   );
 };
