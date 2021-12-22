@@ -1,13 +1,14 @@
 type Item = {
-  text: string;
+  title: string;
   complete: boolean;
   description?: string;
   subItems?: Item;
+  desc?: string;
 };
 
 type ToggleComplete = (event: React.MouseEvent<HTMLParagraphElement>) => void;
 
-type AddItem = (newItem: string) => void;
+type AddItem = (title: string, desc: string) => void;
 
 interface ServerToClientEvents {
   noArg: () => void;
@@ -19,7 +20,7 @@ interface ServerToClientEvents {
 
 interface ClientToServerEvents {
   hello: () => void;
-  addItem: (newItem: string) => void;
+  addItem: ({title: string, desc: string}) => void;
   changeStatus: (selectedItem: string | null) => void;
   filterCompleted: () => void;
   filterPending: () => void;

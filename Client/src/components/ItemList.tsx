@@ -10,7 +10,7 @@ export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete }) => 
   return (
     <ul>
       {items.map(item => (
-        <Item key={item.text} item={item} toggleComplete={toggleComplete} />
+        <Item key={item.title} item={item} toggleComplete={toggleComplete} />
       ))}
     </ul>
   );

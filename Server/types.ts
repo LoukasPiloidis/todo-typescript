@@ -24,10 +24,11 @@ export interface SocketData {
 
 
 export type Item = {
-  text: string;
+  title: string;
   complete: boolean;
   description?: string;
   subItems?: Item;
+  desc?: string;
 };
 
 export const EVENTS = {

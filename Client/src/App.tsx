@@ -20,8 +20,8 @@ const App = () => {
     socket.emit('changeStatus', selectedItem);
   };
 
-  const addItem = (newItem: string) => {
-    socket.emit('addItem', newItem);
+  const addItem = (title: string, desc: string) => {
+    socket.emit('addItem', {title, desc});
     
     // newItem.trim() !== '' && setItems([...items, {text: newItem, complete: false }])
   };

@@ -1,10 +1,10 @@
 export const initialItems: Array<Item> = [
   {
-    text: "Walk the dog",
+    title: "Walk the dog",
     complete: true
   },
   {
-    text: "Make app",
+    title: "Make app",
     complete: false
   }
 ];

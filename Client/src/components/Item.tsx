@@ -9,9 +9,10 @@ interface ItemProps {
 export const Item: React.FC<ItemProps> = ({ item, toggleComplete }) => {
   return (
     <li>
-      <p className={item.complete ? "complete" : undefined} onClick={toggleComplete}>
-        {item.text}
-      </p>
+      <h2 className={item.complete ? "complete" : undefined} onClick={toggleComplete}>
+        {item.title}
+      </h2>
+      <p>{item.desc}</p>
     </li>
   );
 };

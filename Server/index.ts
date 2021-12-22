@@ -4,9 +4,9 @@ import { Item, ClientToServerEvents, ServerToClientEvents, InterServerEvents, So
 const port: number = 4000;
 
 let initialItems: Array<Item> = [
-  {text: 'walk the dog', complete: true, subItems: {text: 'text2', complete: false}},
-  {text: 'write app', complete: false},
-  {text: 'it is working', complete: false}
+  {title: 'walk the dog', complete: true, subItems: {title: 'text2', complete: false}},
+  {title: 'write app', complete: false},
+  {title: 'it is working', complete: false}
 ];
 
 const filterItems = (value: boolean) => {
@@ -22,14 +22,14 @@ io.on("connection", (socket: Socket) => {
   console.log(socket.id);
   io.emit('items', initialItems);
 
-  socket.on('addItem', (newItem: string) => {
-    const completeItem: Item = {text: newItem, complete: false}
+  socket.on('addItem', (newItem) => {
+    const completeItem: Item = {title: newItem.title, complete: false, desc: newItem.desc}
     initialItems.push(completeItem);
     io.emit('items', initialItems);
   });
 
   socket.on('changeStatus', (selectedItem: string) => {
-    initialItems = initialItems.map(item => item.text === selectedItem ? {...item, complete: !item.complete} : item);
+    initialItems = initialItems.map(item => item.title === selectedItem ? {...item, complete: !item.complete} : item);
     io.emit('items', initialItems);
   });
 
