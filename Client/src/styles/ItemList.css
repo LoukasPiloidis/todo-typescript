@@ -1,6 +1,6 @@
 .items-container {
   display: flex;
   flex-direction: column;
-  width: 40%;
-  margin-left: 3rem;
+  width: 35%;
+  margin: 3rem 0 0 10rem;
 }

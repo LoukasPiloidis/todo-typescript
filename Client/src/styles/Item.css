@@ -1,15 +1,24 @@
 .item-main {
-  border: 2px solid #0B4AC6;
+  border: 1px solid #0B4AC6;
   margin: 1rem 0;
-  padding: 2rem;
+  padding: 0.5rem 2rem 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 4px;
   text-align: center;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.item-main h2, .item-main p, .item-main button {
+  margin: 0.3rem;
 }
 
 .complete {
+  background-color: rgba(11, 74, 198, 0.1)
+}
+
+.complete h2, .complete p {
   text-decoration: line-through;
 }
 
@@ -19,4 +28,5 @@
   background-color: #0B4AC6;
   color: white;
   font-size: 18px;
+  width: 15%;
 }

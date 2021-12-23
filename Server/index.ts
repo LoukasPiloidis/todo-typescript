@@ -4,8 +4,8 @@ import { Item, ClientToServerEvents, ServerToClientEvents, InterServerEvents, So
 const port: number = 4000;
 
 let initialItems: Array<Item> = [
-  {title: 'walk the dog', complete: true, subItems: {title: 'text2', complete: false}},
-  {title: 'write app', complete: false},
+  {title: 'SuperMarket List', complete: false, desc: 'Our collaborative supermarket list for the whole family to contribute.'},
+  {title: 'Walk the dog', complete: true, desc: 'Take Nala for a brief walk through the park for the night.'},
   {title: 'it is working', complete: false}
 ];
 
