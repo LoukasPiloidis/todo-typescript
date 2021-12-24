@@ -14,7 +14,7 @@ export const Item: React.FC<ItemProps> = ({ item, toggleComplete, toggleEdit }) 
         {item.title}
       </h2>
       <p>{item.desc}</p>
-      <button type='submit' className='edit-btn' id={item.title} onClick={toggleEdit}>Edit</button>
+      <button type='submit' className='edit-btn' id={item.title} onClick={toggleEdit}>Show More</button>
     </li>
   );
 };
