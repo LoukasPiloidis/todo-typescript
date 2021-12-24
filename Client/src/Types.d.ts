@@ -8,6 +8,8 @@ type Item = {
 
 type ToggleComplete = (event: React.MouseEvent<HTMLParagraphElement>) => void;
 
+type ToggleEdit = (event: React.MouseEvent<HTMLButtonElement>) => void;
+
 type AddItem = (title: string, desc: string) => void;
 
 interface ServerToClientEvents {
