@@ -16,13 +16,17 @@ export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete }) => 
     
   }
   return (
-    <div className="main">
+    <div className='main'>
       <ul className='items-container'>
         {items.map(item => (
           <Item key={item.title} item={item} toggleComplete={toggleComplete} toggleEdit={toggleEdit} />
         ))}
       </ul>
-      <div>
+      <div className='items__edited-main'>
+        <form>
+          <input type='checkbox' value='list'></input>
+          <label>List</label>
+        </form>
         <h2>{editedItem.title}</h2>
         <p>{editedItem.desc}</p>
       </div>
