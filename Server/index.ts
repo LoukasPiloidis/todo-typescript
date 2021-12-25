@@ -33,6 +33,11 @@ io.on("connection", (socket: Socket) => {
     io.emit('items', initialItems);
   });
 
+  socket.on('removeItem', (selectedItem: string) => {
+    initialItems = initialItems.filter(item => item.title !== selectedItem);
+    io.emit('items', initialItems);
+  });
+
   socket.on('filterCompleted', () => {
     filterItems(true);
   });

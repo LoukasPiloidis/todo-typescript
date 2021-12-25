@@ -20,6 +20,11 @@ const App = () => {
     socket.emit('changeStatus', selectedItem);
   };
 
+  const toggleRemove = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const selectedItem: string | null = e.currentTarget.id;
+    socket.emit('removeItem', selectedItem);
+  };
+
   const addItem = (title: string, desc: string) => {
     socket.emit('addItem', {title, desc});
     
@@ -48,7 +53,7 @@ const App = () => {
         <button type="submit" onClick={handleToggleButton} >Completed</button>
         <button type="submit" onClick={handleToggleButton} >Pending</button>
         <AddItemForm addItem={addItem} />
-        <ItemList items={items} toggleComplete={toggleComplete} />
+        <ItemList items={items} toggleComplete={toggleComplete} toggleRemove={toggleRemove} />
       </>
     </React.Fragment>
   ) 

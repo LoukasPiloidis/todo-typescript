@@ -5,9 +5,10 @@ import '../styles/ItemList.css';
 interface ItemListProps {
   items: Array<Item>;
   toggleComplete: ToggleComplete;
+  toggleRemove: ToggleRemove;
 }
 
-export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete }) => {
+export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete, toggleRemove }) => {
   const [editedItem, setEditedItem] = useState<Item>();
 
   const toggleEdit: ToggleEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -19,7 +20,7 @@ export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete }) => 
     <div className='main'>
       <ul className='items-container'>
         {items.map(item => (
-          <Item key={item.title} item={item} toggleComplete={toggleComplete} toggleEdit={toggleEdit} />
+          <Item key={item.title} item={item} toggleComplete={toggleComplete} toggleEdit={toggleEdit} toggleRemove={toggleRemove} />
         ))}
       </ul>
       {editedItem && <div className='items__edited-main'>

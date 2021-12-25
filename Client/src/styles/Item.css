@@ -23,11 +23,24 @@
   text-decoration: line-through;
 }
 
+.item-btn-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 60%;
+}
+
 .edit-btn {
-  padding: 0.2rem;
+  padding: 0.2rem 0.5rem;
   border-radius: 4px;
   background-color: #0B4AC6;
   color: white;
   font-size: 18px;
-  width: 30%;
+}
+
+.remove-btn {
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background-color: #0B4AC6;
+  color: white;
+  font-size: 18px;
 }
