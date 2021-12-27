@@ -1,24 +1,16 @@
+import { MongoClient } from 'mongodb';
 import { config } from 'dotenv';
-import * as pg from 'pg'
-const { Pool } = pg.default;
+import { Item } from './types';
 
 config();
 
-const pool = new Pool({
-  user: process.env.PG_USER,
-  host: process.env.PG_HOST,
-  database: process.env.PG_DATABASE,
-  password: process.env.PG_PASSWORD,
-  port: 5432,
-});
+const uri = `mongodb+srv://Utes:${process.env.MONGO_PASS}@cluster0.qt1uh.mongodb.net/Todo-typescript?retryWrites=true&w=majority`;
+const client = new MongoClient(uri);
 
-export const addUser = async userData => {
-  try {
-    const client = await pool.connect();
-    const user = await client.query('INSERT INTO "Users"."Users" (username, email, password) VALUES ($1, $2, $3) RETURNING *', [userData.username, userData.email, userData.password]);
-    client.release();
-    return user.rows;
-  } catch {
-    return 'User already exists';
-  }
+export const createItem = async (item: Item) => {
+  console.log('hi');
+
+  await client.connect();
+  await client.db("Todo-typescript").collection("Items").insertOne(item);
+  await client.close();
 };

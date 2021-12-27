@@ -1,5 +1,6 @@
 import { Server, Socket } from 'socket.io';
 import { Item, ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData, EVENTS } from './types';
+import { createItem } from './db';
 
 const port: number = 4000;
 
@@ -25,6 +26,7 @@ io.on("connection", (socket: Socket) => {
   socket.on('addItem', (newItem) => {
     const completeItem: Item = {title: newItem.title, complete: false, desc: newItem.desc}
     initialItems.push(completeItem);
+    createItem(completeItem);
     io.emit('items', initialItems);
   });
 
