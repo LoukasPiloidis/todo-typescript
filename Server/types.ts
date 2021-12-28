@@ -2,7 +2,7 @@ export interface ServerToClientEvents {
   noArg: () => void;
   basicEmit: (a: number, b: string) => void;
   withAck: (d: string, callback: (e: number) => void) => void;
-  items: (items: Array<Item>) => [];
+  items: (items: Array<Item> | unknown) => [];
   addItems: (newItem: object) => void;
   returnFilteredData: (filteredData: Array<Item>) => void;
 }

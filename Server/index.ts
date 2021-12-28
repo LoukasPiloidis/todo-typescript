@@ -1,6 +1,6 @@
 import { Server, Socket } from 'socket.io';
 import { Item, ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData, EVENTS } from './types';
-import { createItem } from './db';
+import { createItem, getItem } from './db';
 
 const port: number = 4000;
 
@@ -19,9 +19,9 @@ const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEve
   cors: {origin: ['http://localhost:3000']}
 });
 
-io.on("connection", (socket: Socket) => {
-  console.log(socket.id);
-  io.emit('items', initialItems);
+io.on("connection", async (socket: Socket) => {
+  const data = await getItem();
+  io.emit('items', data);
 
   socket.on('addItem', (newItem) => {
     const completeItem: Item = {title: newItem.title, complete: false, desc: newItem.desc}
