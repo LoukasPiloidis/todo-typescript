@@ -27,6 +27,18 @@ export const getItem = async () => {
   });
 };
 
+export const getFilteredItems = async (status: boolean) => {
+  await client.connect();
+  return new Promise((resolve, reject) => {
+    client.db("Todo-typescript").collection("Items").find({complete: status}).toArray((err, data) => {
+      if (err) {
+      return reject(err);
+      };
+    return resolve(data);
+    });
+  });
+}
+
 export const updateStatus = async (item: Item) => {
   await client.connect();
   await client.db("Todo-typescript").collection("Items").updateOne({ title: item.title }, { $set: { complete: !item.complete }});

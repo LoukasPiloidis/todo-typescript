@@ -4,7 +4,7 @@ export interface ServerToClientEvents {
   withAck: (d: string, callback: (e: number) => void) => void;
   items: (items: Array<Item> | unknown) => [];
   addItems: (newItem: object) => void;
-  returnFilteredData: (filteredData: Array<Item>) => void;
+  returnFilteredData: (filteredData: Array<Item> | unknown) => [];
 }
 
 export interface ClientToServerEvents {
