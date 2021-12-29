@@ -32,3 +32,9 @@ export const updateStatus = async (item: Item) => {
   await client.db("Todo-typescript").collection("Items").updateOne({ title: item.title }, { $set: { complete: !item.complete }});
   await client.close();
 };
+
+export const deleteItem = async (item: string) => {
+  await client.connect();
+  await client.db("Todo-typescript").collection("Items").deleteOne({title: item});
+  await client.close();
+}

@@ -1,6 +1,6 @@
 import { Server, Socket } from 'socket.io';
 import { Item, ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData, EVENTS } from './types';
-import { createItem, getItem, updateStatus } from './db';
+import { createItem, getItem, updateStatus, deleteItem } from './db';
 
 const port: number = 4000;
 
@@ -30,10 +30,11 @@ io.on("connection", async (socket: Socket) => {
     io.emit('items', data);
   });
 
-  // socket.on('removeItem', (selectedItem: string) => {
-  //   initialItems = initialItems.filter(item => item.title !== selectedItem);
-  //   io.emit('items', initialItems);
-  // });
+  socket.on('removeItem', async (selectedItem: string) => {
+    await deleteItem(selectedItem);
+    const data = await getItem();
+    io.emit('items', data);
+  });
 
   // socket.on('filterCompleted', () => {
   //   filterItems(true);
