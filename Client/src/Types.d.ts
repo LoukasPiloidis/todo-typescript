@@ -6,7 +6,7 @@ type Item = {
   desc?: string;
 };
 
-type ToggleComplete = (event: React.MouseEvent<HTMLParagraphElement>) => void;
+type ToggleComplete = (event: React.MouseEvent<HTMLDivElement>) => void;
 
 type ToggleEdit = (event: React.MouseEvent<HTMLButtonElement>) => void;
 
@@ -25,7 +25,7 @@ interface ServerToClientEvents {
 interface ClientToServerEvents {
   hello: () => void;
   addItem: ({title: string, desc: string}) => void;
-  changeStatus: (selectedItem: string | null) => void;
+  changeStatus: (selectedItem: Item | null) => void;
   removeItem: (selectedItem: string | null) => void;
   filterCompleted: () => void;
   filterPending: () => void;

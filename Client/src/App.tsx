@@ -15,8 +15,8 @@ const App = () => {
     setItems(itemList);
   });
 
-  const toggleComplete = (e: React.MouseEvent<HTMLParagraphElement>) => {
-    const selectedItem: string | null = e.currentTarget.textContent;
+  const toggleComplete = (e: React.MouseEvent<HTMLDivElement>) => {
+    const selectedItem = items.filter(todo => todo.title === e.currentTarget.id)[0];
     socket.emit('changeStatus', selectedItem);
   };
 

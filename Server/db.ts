@@ -26,3 +26,9 @@ export const getItem = async () => {
     });
   });
 };
+
+export const updateStatus = async (item: Item) => {
+  await client.connect();
+  await client.db("Todo-typescript").collection("Items").updateOne({ title: item.title }, { $set: { complete: !item.complete }});
+  await client.close();
+};

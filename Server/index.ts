@@ -1,14 +1,8 @@
 import { Server, Socket } from 'socket.io';
 import { Item, ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData, EVENTS } from './types';
-import { createItem, getItem } from './db';
+import { createItem, getItem, updateStatus } from './db';
 
 const port: number = 4000;
-
-// let initialItems: Array<Item> = [
-//   {title: 'SuperMarket List', complete: false, desc: 'Our collaborative supermarket list for the whole family to contribute.'},
-//   {title: 'Walk the dog', complete: true, desc: 'Take Nala for a brief walk through the park for the night.'},
-//   {title: 'it is working', complete: false}
-// ];
 
 // const filterItems = (value: boolean) => {
 //   const filteredItems = initialItems.filter(item => item.complete === value);
@@ -30,10 +24,11 @@ io.on("connection", async (socket: Socket) => {
     io.emit('items', data);
   });
 
-  // socket.on('changeStatus', (selectedItem: string) => {
-  //   initialItems = initialItems.map(item => item.title === selectedItem ? {...item, complete: !item.complete} : item);
-  //   io.emit('items', initialItems);
-  // });
+  socket.on('changeStatus', async (selectedItem: Item) => {
+    await updateStatus(selectedItem);
+    const data = await getItem();
+    io.emit('items', data);
+  });
 
   // socket.on('removeItem', (selectedItem: string) => {
   //   initialItems = initialItems.filter(item => item.title !== selectedItem);
