@@ -4,15 +4,20 @@ import { createItem, getItem, updateStatus, deleteItem, getFilteredItems } from 
 
 const port: number = 4000;
 
+const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(port, {
+  cors: {origin: ['http://localhost:3000']}
+});
+
 const filterItems =  async(value: boolean) => {
   const filteredItems: Array<Item> | unknown = await getFilteredItems(value);
   
   io.emit('returnFilteredData', filteredItems);
 };
 
-const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(port, {
-  cors: {origin: ['http://localhost:3000']}
-});
+const userId = io.of('/loukas');
+userId.on('connection', (socket: Socket) => {
+  console.log('we are connected to Loukas user');
+})
 
 io.on("connection", async (socket: Socket) => {
   const data = await getItem();

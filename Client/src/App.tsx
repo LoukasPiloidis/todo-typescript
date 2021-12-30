@@ -7,6 +7,7 @@ import './styles/App.css';
 const SOCKET_URL = process.env.SOCKET_URL || 'http://localhost:4000';
 
 const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(SOCKET_URL);
+const userSocket: Socket<ServerToClientEvents, ClientToServerEvents> = io('http://localhost:4000/loukas');
 
 const App = () => {
   const [items, setItems] = useState<Array<Item>>([]);
