@@ -1,25 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
+import { useParams } from "react-router";
 import { AddItemForm } from "./AddItemForm";
 import { ItemList } from "./ItemList";
 import '../styles/UserCard.css';
 
-// interface UserCardProps {
-//   items: Array<Item>;
-//   toggleComplete: ToggleComplete;
-//   handleToggleButton: HandleToggleButton;
-//   // toggleEdit: ToggleEdit;
-//   toggleRemove: ToggleRemove;
-//   addItem: AddItem;
-// }
-
 const SOCKET_URL = process.env.SOCKET_URL || 'http://localhost:4000';
 
 const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(SOCKET_URL);
-// const userSocket: Socket<ServerToClientEvents, ClientToServerEvents> = io('http://localhost:4000/loukas');
 
 export const UserCard: React.FC = () => {
   const [items, setItems] = useState<Array<Item>>([]);
+
+  const { id } = useParams();
 
   socket.on("items", (itemList: Array<Item>) => setItems(itemList));
 
@@ -29,12 +22,12 @@ export const UserCard: React.FC = () => {
   };
 
   const toggleRemove = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const selectedItem: string | null = e.currentTarget.id;
+    const selectedItem: object = { title: e.currentTarget.id, id };
     socket.emit('removeItem', selectedItem);
   };
 
   const addItem = (title: string, desc: string) => {
-    socket.emit('addItem', {title, desc});
+    socket.emit('addItem', {title, desc, id});
   };
 
   const handleToggleButton = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -53,17 +46,8 @@ export const UserCard: React.FC = () => {
   };
 
   useEffect(() => {
-    socket.emit('getItems');
+    socket.emit('getItems', id);
   }, []);
-  
-  console.log(items);
-  
-
-  // useEffect(() => {
-
-  //   console.log(items);
-  // }, [items]);
-  
 
   return (
     <div>

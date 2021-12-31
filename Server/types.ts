@@ -23,6 +23,11 @@ export interface SocketData {
   age: number;
 }
 
+export interface removeObject {
+  title: string
+  id: string
+}
+
 
 export type Item = {
   title: string;
@@ -30,6 +35,7 @@ export type Item = {
   description?: string;
   subItems?: Item;
   desc?: string;
+  id: string;
 };
 
 export const EVENTS = {

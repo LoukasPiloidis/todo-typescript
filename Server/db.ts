@@ -15,10 +15,10 @@ export const createItem = async (item: Item) => {
   await client.close();
 };
 
-export const getItem = async () => {
+export const getItem = async (id: string) => {
   await client.connect();
   return new Promise((resolve, reject) => {
-    client.db("Todo-typescript").collection("Items").find().toArray((err, data) => {
+    client.db("Todo-typescript").collection("Items").find({id}).toArray((err, data) => {
       if (err) {
       return reject(err);
       };

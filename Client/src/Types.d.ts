@@ -26,10 +26,10 @@ interface ServerToClientEvents {
 
 interface ClientToServerEvents {
   hello: () => void;
-  addItem: ({title: string, desc: string}) => void;
+  addItem: ({title: string, desc: string, id: string}) => void;
   changeStatus: (selectedItem: Item | null) => void;
-  removeItem: (selectedItem: string | null) => void;
+  removeItem: (selectedItem: object) => void;
   filterCompleted: () => void;
   filterPending: () => void;
-  getItems: () => void;
+  getItems: (id: string | undefined) => void;
 }

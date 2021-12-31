@@ -1,5 +1,5 @@
 import { Server, Socket } from 'socket.io';
-import { Item, ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData, EVENTS } from './types';
+import { Item, ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData, EVENTS, removeObject } from './types';
 import { createItem, getItem, updateStatus, deleteItem, getFilteredItems } from './db';
 
 const port: number = 4000;
@@ -21,27 +21,29 @@ const filterItems =  async(value: boolean) => {
 
 io.on("connection", async (socket: Socket) => {
 
-  socket.on('getItems', async () => {
-    const data = await getItem();
+  socket.on('getItems', async (id) => {
+    const data = await getItem(id);
     io.emit('items', data);
   });
 
   socket.on('addItem', async (newItem: Item) => {
-    const completeItem: Item = {title: newItem.title, complete: false, desc: newItem.desc}
+    const completeItem: Item = {title: newItem.title, complete: false, desc: newItem.desc, id: newItem.id}
     await createItem(completeItem);
-    const data = await getItem();
+    const data = await getItem(newItem.id);
     io.emit('items', data);
   });
 
   socket.on('changeStatus', async (selectedItem: Item) => {
     await updateStatus(selectedItem);
-    const data = await getItem();
+    const data = await getItem(selectedItem.id);
     io.emit('items', data);
   });
 
-  socket.on('removeItem', async (selectedItem: string) => {
-    await deleteItem(selectedItem);
-    const data = await getItem();
+  socket.on('removeItem', async (selectedItem: removeObject) => {
+    console.log(selectedItem);
+    
+    await deleteItem(selectedItem.title);
+    const data = await getItem(selectedItem.id);
     io.emit('items', data);
   });
 
