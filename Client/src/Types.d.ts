@@ -12,6 +12,8 @@ type ToggleEdit = (event: React.MouseEvent<HTMLButtonElement>) => void;
 
 type ToggleRemove = (event: React.MouseEvent<HTMLButtonElement>) => void;
 
+type HandleToggleButton = (event: React.MouseEvent<HTMLButtonElement>) => void;
+
 type AddItem = (title: string, desc: string) => void;
 
 interface ServerToClientEvents {
@@ -29,4 +31,5 @@ interface ClientToServerEvents {
   removeItem: (selectedItem: string | null) => void;
   filterCompleted: () => void;
   filterPending: () => void;
+  getItems: () => void;
 }

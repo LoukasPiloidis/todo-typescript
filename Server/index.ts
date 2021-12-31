@@ -14,14 +14,17 @@ const filterItems =  async(value: boolean) => {
   io.emit('returnFilteredData', filteredItems);
 };
 
-const userId = io.of('/loukas');
-userId.on('connection', (socket: Socket) => {
-  console.log('we are connected to Loukas user');
-})
+// const userId = io.of('/loukas');
+// userId.on('connection', (socket: Socket) => {
+//   console.log('we are connected to Loukas user');
+// })
 
 io.on("connection", async (socket: Socket) => {
-  const data = await getItem();
-  io.emit('items', data);
+
+  socket.on('getItems', async () => {
+    const data = await getItem();
+    io.emit('items', data);
+  });
 
   socket.on('addItem', async (newItem: Item) => {
     const completeItem: Item = {title: newItem.title, complete: false, desc: newItem.desc}

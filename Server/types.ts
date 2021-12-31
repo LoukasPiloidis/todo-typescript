@@ -5,6 +5,7 @@ export interface ServerToClientEvents {
   items: (items: Array<Item> | unknown) => [];
   addItems: (newItem: object) => void;
   returnFilteredData: (filteredData: Array<Item> | unknown) => [];
+  getItems: () => [] | null;
 }
 
 export interface ClientToServerEvents {
