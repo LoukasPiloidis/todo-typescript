@@ -1,0 +1,34 @@
+.welcome__main {
+  width: 40%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.main__title {
+  font-size: 22px;
+  margin: 0.5rem;
+}
+
+.main__input {
+  padding: 0.3rem;
+  border-radius: 4px;
+  text-align: center;
+  margin-bottom: 0.3rem;
+  border: 1px solid #0B4AC6;
+  width: 70%;
+  font-size: 16px;
+}
+
+.main__button {
+  padding: 0.2rem;
+  border-radius: 4px;
+  width: 15%;
+  background-color: #0B4AC6;
+  color: white;
+  font-size: 18px;
+  margin-bottom: 1rem;
+}
