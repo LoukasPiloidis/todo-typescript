@@ -32,13 +32,13 @@ export const UserCard: React.FC = () => {
 
   const handleToggleButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (e.currentTarget.textContent === 'Completed') {
-      socket.emit("filterCompleted");
+      socket.emit("filterCompleted", id);
       socket.on('returnFilteredData', (filteredData: any) => {
         setItems(filteredData);
       });
     };
     if (e.currentTarget.textContent === 'Pending') {
-      socket.emit("filterPending");
+      socket.emit("filterPending", id);
       socket.on('returnFilteredData', (filteredData: any) => {
         setItems(filteredData);
       });

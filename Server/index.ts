@@ -8,8 +8,9 @@ const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEve
   cors: {origin: ['http://localhost:3000']}
 });
 
-const filterItems =  async(value: boolean) => {
-  const filteredItems: Array<Item> | unknown = await getFilteredItems(value);
+const filterItems =  async(value: boolean, id: string) => {
+  
+  const filteredItems: Array<Item> | unknown = await getFilteredItems(value, id);
   
   io.emit('returnFilteredData', filteredItems);
 };
@@ -47,12 +48,8 @@ io.on("connection", async (socket: Socket) => {
     io.emit('items', data);
   });
 
-  socket.on('filterCompleted', () => {
-    filterItems(true);
-  });
+  socket.on('filterCompleted', (id: string) => filterItems(true, id));
 
-  socket.on('filterPending', () => {
-    filterItems(false);
-  });
+  socket.on('filterPending', (id: string) => filterItems(false, id));
 
 });

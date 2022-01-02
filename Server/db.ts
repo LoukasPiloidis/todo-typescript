@@ -27,10 +27,10 @@ export const getItem = async (id: string) => {
   });
 };
 
-export const getFilteredItems = async (status: boolean) => {
+export const getFilteredItems = async (status: boolean, id: string) => {
   await client.connect();
   return new Promise((resolve, reject) => {
-    client.db("Todo-typescript").collection("Items").find({complete: status}).toArray((err, data) => {
+    client.db("Todo-typescript").collection("Items").find({complete: status, id}).toArray((err, data) => {
       if (err) {
       return reject(err);
       };

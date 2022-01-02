@@ -29,7 +29,7 @@ interface ClientToServerEvents {
   addItem: ({title: string, desc: string, id: string}) => void;
   changeStatus: (selectedItem: Item | null) => void;
   removeItem: (selectedItem: object) => void;
-  filterCompleted: () => void;
-  filterPending: () => void;
+  filterCompleted: (id: string | undefined) => void;
+  filterPending: (id: string | undefined) => void;
   getItems: (id: string | undefined) => void;
 }
