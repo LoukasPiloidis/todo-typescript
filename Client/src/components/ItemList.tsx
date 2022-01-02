@@ -26,15 +26,15 @@ export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete, toggl
       {editedItem && <div className='items__edited-main'>
         <form className='form-checkbox'>
           <div className='form__div'>
-            <input type='checkbox' value='list'></input>
-            <label>List</label>
+            <input type='radio' name='list-selection' value='list' id="list"></input>
+            <label htmlFor='list'>List</label>
           </div>
           <div className='form__div'>
-            <input type='checkbox' value='finance'></input>
+            <input type='radio' name='list-selection' value='finance'></input>
             <label>Finance</label>
           </div>
           <div className='form__div'>
-            <input type='checkbox' value='daily'></input>
+            <input type='radio' name='list-selection' value='daily'></input>
             <label>Daily</label>
           </div>
         </form>
