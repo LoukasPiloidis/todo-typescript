@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Item } from "./Item";
+import { RadioList } from './RadioList'
 import '../styles/ItemList.css';
 
 interface ItemListProps {
@@ -44,13 +45,7 @@ export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete, toggl
               <label>Daily</label>
             </div>
           </form>
-          {editedItem && <h2>{editedItem.title}</h2>}
-          {editedItem && <p>{editedItem.desc}</p>}
-          <form className='form-add-item'>
-            <input type='text' className='add-item-text' placeholder='Add an Item'></input>
-            <button type='submit' className='add-item-btn'>+</button>
-          </form>
-          <button type='submit' className='edit-info-btn'>Edit Info</button>
+          <RadioList item={editedItem}/>
         </div>
         <p className="close-btn" onClick={handleClose}>X</p>
       </div>}

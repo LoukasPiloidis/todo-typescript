@@ -7,9 +7,9 @@ import { Welcome } from './components/Welcome';
 import './styles/App.css';
 import { UserCard } from "./components/UserCard";
 
-const SOCKET_URL = process.env.SOCKET_URL || 'http://localhost:4000';
+// const SOCKET_URL = process.env.SOCKET_URL || 'http://localhost:4000';
 
-const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(SOCKET_URL);
+// const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(SOCKET_URL);
 
 const App = () => {
 
