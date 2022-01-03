@@ -7,12 +7,20 @@ type Item = {
   id: string;
   list?: Array;
   finance?: Array;
+  daily?: Array;
 };
 
 type financeItem = {
   title: string;
   price: string;
 };
+
+// type dailyItem = {
+//   title: string;
+//   desc: string;
+//   complete: boolean;
+//   id: string;
+// };
 
 type ToggleComplete = (event: React.MouseEvent<HTMLDivElement>) => void;
 
@@ -27,6 +35,9 @@ type AddItem = (title: string, desc: string) => void;
 type AddListItem = (value: object | undefined) => void;
 
 type AddFinanceItem = (value: object | undefined) => void;
+
+type AddDailyItem = (value: object | undefined) => void;
+
 
 interface ServerToClientEvents {
   noArg: () => void;
@@ -46,4 +57,6 @@ interface ClientToServerEvents {
   getItems: (id: string | undefined) => void;
   addListItem: (value: object | undefined) => void;
   addFinanceItem: (value: object | undefined) => void;
+  addDailyItem: (value: object | undefined) => void;
+
 }

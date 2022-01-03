@@ -3,6 +3,7 @@ import { Item } from "./Item";
 import { RadioList } from './RadioList'
 import '../styles/ItemList.css';
 import { RadioFinance } from "./RadioFinance";
+import { RadioDaily } from "./RadioDaily";
 
 interface ItemListProps {
   items: Array<Item>;
@@ -10,9 +11,10 @@ interface ItemListProps {
   toggleRemove: ToggleRemove;
   addListItem: AddListItem;
   addFinanceItem: AddFinanceItem;
+  addDailyItem: AddDailyItem;
 }
 
-export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete, toggleRemove, addListItem, addFinanceItem }) => {
+export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete, toggleRemove, addListItem, addFinanceItem, addDailyItem }) => {
   const [editedItem, setEditedItem] = useState<Item>();
   const [listValue, setListValue] = useState<string>('');
 
@@ -58,6 +60,7 @@ export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete, toggl
           <p>{editedItem.desc}</p>
           {listValue === 'list' && <RadioList item={editedItem} addListItem={addListItem} />}
           {listValue === 'finance' && <RadioFinance item={editedItem} addFinanceItem={addFinanceItem} />}
+          {listValue === 'daily' && <RadioDaily item={editedItem} addDailyItem={addDailyItem} />}
         </div>
         <p className="close-btn" onClick={handleClose}>X</p>
       </div>}

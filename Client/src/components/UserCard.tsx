@@ -49,6 +49,9 @@ export const UserCard: React.FC = () => {
 
   const addFinanceItem = (value: object | undefined) => socket.emit('addFinanceItem', value);
 
+  const addDailyItem = (value: object | undefined) => socket.emit('addDailyItem', value);
+
+
 
   useEffect(() => {
     socket.emit('getItems', id);
@@ -62,7 +65,7 @@ export const UserCard: React.FC = () => {
         <p className="filter-button" onClick={handleToggleButton} >Pending</p>
         <p className="filter-button" onClick={handleToggleButton} >Reset</p>
       </div>
-      <ItemList items={items} toggleComplete={toggleComplete} toggleRemove={toggleRemove} addListItem={addListItem} addFinanceItem={addFinanceItem} />
+      <ItemList items={items} toggleComplete={toggleComplete} toggleRemove={toggleRemove} addListItem={addListItem} addFinanceItem={addFinanceItem} addDailyItem={addDailyItem} />
     </div>
   );
 };

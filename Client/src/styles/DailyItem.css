@@ -1,0 +1,8 @@
+.complete {
+  background-color: rgba(11, 74, 198, 0.1);
+  order: 1;
+}
+
+.complete h2, .complete p {
+  text-decoration: line-through;
+}
