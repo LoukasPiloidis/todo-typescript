@@ -6,6 +6,12 @@ type Item = {
   desc?: string;
   id: string;
   list?: Array;
+  finance?: Array;
+};
+
+type financeItem = {
+  title: string;
+  price: string;
 };
 
 type ToggleComplete = (event: React.MouseEvent<HTMLDivElement>) => void;
@@ -19,6 +25,8 @@ type HandleToggleButton = (event: React.MouseEvent<HTMLButtonElement>) => void;
 type AddItem = (title: string, desc: string) => void;
 
 type AddListItem = (value: object | undefined) => void;
+
+type AddFinanceItem = (value: object | undefined) => void;
 
 interface ServerToClientEvents {
   noArg: () => void;
@@ -37,4 +45,5 @@ interface ClientToServerEvents {
   filterPending: (id: string | undefined) => void;
   getItems: (id: string | undefined) => void;
   addListItem: (value: object | undefined) => void;
+  addFinanceItem: (value: object | undefined) => void;
 }

@@ -25,8 +25,6 @@ export const RadioList: React.FC<RadioListProps> = ({ item, addListItem }) => {
   
   return (
     <div className="radio-list-item">
-      {item && <h2>{item.title}</h2>}
-      {item && <p>{item.desc}</p>}
       <form className='form-add-item'>
         <input type='text' className='add-item-text' placeholder='Add an Item' onChange={handleChange}></input>
         <button className='add-item-btn' onClick={addNewItem} id={item.title}>+</button>
