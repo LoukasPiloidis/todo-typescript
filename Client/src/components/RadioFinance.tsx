@@ -37,9 +37,9 @@ export const RadioFinance: React.FC<RadioFinanceProps> = ({ item, addFinanceItem
         <button className='add-item-btn' onClick={addNewItem} id={item.title}>+</button>
       </form>
       {items.map((el => el && 
-        <li key={Math.random().toString()}>
-          <p>{el.title}</p>
-          <p>{el.price}</p>
+        <li key={Math.random().toString()} className="list-item">
+            <p>{el.title}</p>
+          <p>{el.price}:-</p>
         </li>))}
       <button type='submit' className='edit-info-btn'>Edit Info</button>
     </div>

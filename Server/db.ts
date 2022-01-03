@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 import { config } from 'dotenv';
-import { Item, addListItem } from './types';
+import { Item, addListItem, addFinanceItem } from './types';
 
 config();
 
@@ -54,5 +54,11 @@ export const deleteItem = async (item: string) => {
 export const updateListItems = async (item: addListItem) => {
   await client.connect();
   await client.db("Todo-typescript").collection("Items").updateOne({ title: item.title }, { $push: { list: item.element }});
+  await client.close();
+};
+
+export const updateFinanceItems = async (item: addFinanceItem) => {
+  await client.connect();
+  await client.db("Todo-typescript").collection("Items").updateOne({ title: item.title }, { $push: { finance: item.item }});
   await client.close();
 };

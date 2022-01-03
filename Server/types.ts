@@ -44,6 +44,12 @@ export type addListItem = {
   id: string;
 };
 
+export type addFinanceItem = {
+  title: string;
+  item: object;
+  id: string;
+};
+
 export const EVENTS = {
   ITEMS: "ITEMS"
 };
