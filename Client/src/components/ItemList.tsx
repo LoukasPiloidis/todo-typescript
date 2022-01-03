@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Item } from "./Item";
 import { RadioList } from './RadioList'
 import '../styles/ItemList.css';
@@ -7,9 +7,10 @@ interface ItemListProps {
   items: Array<Item>;
   toggleComplete: ToggleComplete;
   toggleRemove: ToggleRemove;
+  addListItem: AddListItem;
 }
 
-export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete, toggleRemove }) => {
+export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete, toggleRemove, addListItem }) => {
   const [editedItem, setEditedItem] = useState<Item>();
   const [listValue, setListValue] = useState<string>('');
 
@@ -21,6 +22,12 @@ export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete, toggl
   const handleClose = () => setEditedItem(undefined);
 
   const handleValue = (e: React.MouseEvent<HTMLInputElement>) => setListValue(e.currentTarget.value);
+
+  useEffect(() => {
+    const updateItem: Item = items.filter(el => editedItem && el.title === editedItem.title)[0];
+    setEditedItem(updateItem);
+  }, [items]);
+  
 
   return (
     <div className='main'>
@@ -45,7 +52,7 @@ export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete, toggl
               <label>Daily</label>
             </div>
           </form>
-          <RadioList item={editedItem}/>
+          <RadioList item={editedItem} addListItem={addListItem} />
         </div>
         <p className="close-btn" onClick={handleClose}>X</p>
       </div>}

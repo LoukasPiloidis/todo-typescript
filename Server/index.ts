@@ -1,6 +1,6 @@
 import { Server, Socket } from 'socket.io';
-import { Item, ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData, EVENTS, removeObject } from './types';
-import { createItem, getItem, updateStatus, deleteItem, getFilteredItems } from './db';
+import { Item, ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData, EVENTS, removeObject, addListItem } from './types';
+import { createItem, getItem, updateStatus, deleteItem, getFilteredItems, updateListItems } from './db';
 
 const port: number = 4000;
 
@@ -51,5 +51,11 @@ io.on("connection", async (socket: Socket) => {
   socket.on('filterCompleted', (id: string) => filterItems(true, id));
 
   socket.on('filterPending', (id: string) => filterItems(false, id));
+
+  socket.on('addListItem', async (value: addListItem) => {
+    await updateListItems(value);
+    const data = await getItem(value.id);
+    socket.emit('items', data);
+  });
 
 });

@@ -4,6 +4,8 @@ type Item = {
   description?: string;
   subItems?: Item;
   desc?: string;
+  id: string;
+  list?: Array;
 };
 
 type ToggleComplete = (event: React.MouseEvent<HTMLDivElement>) => void;
@@ -15,6 +17,8 @@ type ToggleRemove = (event: React.MouseEvent<HTMLButtonElement>) => void;
 type HandleToggleButton = (event: React.MouseEvent<HTMLButtonElement>) => void;
 
 type AddItem = (title: string, desc: string) => void;
+
+type AddListItem = (value: object | undefined) => void;
 
 interface ServerToClientEvents {
   noArg: () => void;
@@ -32,4 +36,5 @@ interface ClientToServerEvents {
   filterCompleted: (id: string | undefined) => void;
   filterPending: (id: string | undefined) => void;
   getItems: (id: string | undefined) => void;
+  addListItem: (value: object | undefined) => void;
 }

@@ -38,6 +38,12 @@ export type Item = {
   id: string;
 };
 
+export type addListItem = {
+  title: string;
+  element: string;
+  id: string;
+};
+
 export const EVENTS = {
   ITEMS: "ITEMS"
 };

@@ -45,10 +45,15 @@ export const UserCard: React.FC = () => {
     };
   };
 
+  const addListItem = (value: object | undefined) => {
+    socket.emit('addListItem', value);
+    // socket.on('returnListItems', )
+  }
+
   useEffect(() => {
     socket.emit('getItems', id);
   }, []);
-
+  
   return (
     <div>
       <AddItemForm addItem={addItem} />
@@ -57,7 +62,7 @@ export const UserCard: React.FC = () => {
         <p className="filter-button" onClick={handleToggleButton} >Pending</p>
         <p className="filter-button" onClick={handleToggleButton} >Reset</p>
       </div>
-      <ItemList items={items} toggleComplete={toggleComplete} toggleRemove={toggleRemove} />
+      <ItemList items={items} toggleComplete={toggleComplete} toggleRemove={toggleRemove} addListItem={addListItem} />
     </div>
   );
 };
