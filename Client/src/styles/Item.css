@@ -1,6 +1,6 @@
 .item-main {
   border: 1px solid #0B4AC6;
-  margin: 1rem 0;
+  margin: 0rem 0 1rem;
   padding: 0.5rem 2rem 0.5rem;
   display: flex;
   flex-direction: column;
