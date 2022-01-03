@@ -30,7 +30,7 @@ export const UserCard: React.FC = () => {
     socket.emit('addItem', {title, desc, id});
   };
 
-  const handleToggleButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleToggleButton = (e: React.MouseEvent<HTMLParagraphElement>) => {
     if (e.currentTarget.textContent === 'Completed') {
       socket.emit("filterCompleted", id);
       socket.on('returnFilteredData', (filteredData: any) => {
@@ -51,9 +51,12 @@ export const UserCard: React.FC = () => {
 
   return (
     <div>
-      <button type="submit" onClick={handleToggleButton} >Completed</button>
-      <button type="submit" onClick={handleToggleButton} >Pending</button>
       <AddItemForm addItem={addItem} />
+      <div className="container-filter">
+        <p className="filter-button" onClick={handleToggleButton} >Completed</p>
+        <p className="filter-button" onClick={handleToggleButton} >Pending</p>
+        <p className="filter-button" onClick={handleToggleButton} >Reset</p>
+      </div>
       <ItemList items={items} toggleComplete={toggleComplete} toggleRemove={toggleRemove} />
     </div>
   );

@@ -1,0 +1,23 @@
+.container-filter {
+  width: 30%;
+  margin: auto;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+@media only screen and (max-width: 380px) {
+  .container-filter {
+    width: 70%;
+  }
+}
+
+.filter-button {
+  color: #0B4AC6;
+  font-size: 14px;
+}
+
+.filter-button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
