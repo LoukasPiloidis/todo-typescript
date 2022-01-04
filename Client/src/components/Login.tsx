@@ -1,0 +1,33 @@
+import React, { useState, ChangeEvent } from "react";
+import { useNavigate } from 'react-router-dom';
+import { authenticateUser } from "../config";
+import '../styles/Login.css';
+
+export const Login: React.FC = () => {
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassname] = useState<string>('');
+
+  const navigate = useNavigate();
+
+  const handleUserChange = (e: ChangeEvent<HTMLInputElement>) => setUsername(e.currentTarget.value);
+  const handlePassChange = (e: ChangeEvent<HTMLInputElement>) => setPassname(e.currentTarget.value);
+
+  const handleNavigate = (user: loginInfo | null) => {
+    if (!user) { return console.log('login failed') };
+    if (user) { 
+      localStorage.setItem('user', user.username);
+      return navigate(user.username);
+    }; 
+  };
+
+  const handleExistingSubmit = async () => await authenticateUser(username, password, handleNavigate);
+
+  return (
+    <div className="login__main">
+      <label className="main__title">Login</label>
+      <input type='text' className="main__input" placeholder="enter your username" onChange={handleUserChange}></input>
+      <input type='text' className="main__input" placeholder="enter your password" onChange={handlePassChange}></input>
+      <button type='submit' className="main__button" onClick={handleExistingSubmit}>Go</button>
+    </div>
+  );
+};

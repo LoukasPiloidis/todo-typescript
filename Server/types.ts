@@ -77,6 +77,12 @@ export type userLoginInfo = {
   pass: string;
 };
 
+export type userSignupInfo = {
+  username: string;
+  password: string;
+  id: number;
+};
+
 export const EVENTS = {
   ITEMS: "ITEMS"
 };

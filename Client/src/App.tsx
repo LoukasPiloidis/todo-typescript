@@ -6,6 +6,7 @@ import { io, Socket } from "socket.io-client";
 import { Welcome } from './components/Welcome';
 import './styles/App.css';
 import { UserCard } from "./components/UserCard";
+import { Login } from "./components/Login";
 
 // const SOCKET_URL = process.env.SOCKET_URL || 'http://localhost:4000';
 

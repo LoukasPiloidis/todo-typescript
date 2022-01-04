@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 import { config } from 'dotenv';
-import { Item, addListItem, addFinanceItem, addDailyItem, toggleDailyItem, userLoginInfo } from './types';
+import { Item, addListItem, addFinanceItem, addDailyItem, toggleDailyItem, userLoginInfo, userSignupInfo } from './types';
 
 config();
 
@@ -8,8 +8,6 @@ const uri = `mongodb+srv://Utes:${process.env.MONGO_PASS}@cluster0.qt1uh.mongodb
 const client = new MongoClient(uri);
 
 export const createItem = async (item: Item) => {
-  console.log('hi');
-
   await client.connect();
   await client.db("Todo-typescript").collection("Items").insertOne(item);
   await client.close();
@@ -81,8 +79,13 @@ export const updateDailyStatus = async (item: toggleDailyItem) => {
 
 export const userLogin = async (item: userLoginInfo) => {
   await client.connect();
-  // console.log(item);
   const user = await client.db("Todo-typescript").collection("Users").findOne({username: item.userName, password: item.pass});
   await client.close();
   return user;
+};
+
+export const userSignup = async (item: userSignupInfo) => {
+  await client.connect();
+  await client.db("Todo-typescript").collection("Users").insertOne(item);
+  await client.close();
 };

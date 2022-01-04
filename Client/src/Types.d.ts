@@ -72,4 +72,5 @@ interface ClientToServerEvents {
   addDailyItem: (value: object | undefined) => void;
   changeDailyStatus: (object: object) => void;
   login: (object: object) => void;
+  signup: (object: object) => void;
 }
