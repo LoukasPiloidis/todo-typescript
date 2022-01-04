@@ -28,7 +28,7 @@ export const RadioDaily: React.FC<RadioDailyProps> = ({ item, addDailyItem }) =>
   }, [item]);
   
   return (
-    <div className="radio-list-item">
+    <div className="radio-daily-item">
       <form className='form-add-item'>
         <input type='text' className='add-item-text' placeholder='Add item' onChange={handleItemChange}></input>
         <input type='text' className='add-item-text' placeholder='Add description' onChange={handleDescChange}></input>

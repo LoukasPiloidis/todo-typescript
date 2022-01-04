@@ -36,6 +36,9 @@ export type Item = {
   subItems?: Item;
   desc?: string;
   id: string;
+  list?: Array<string>;
+  finance?: Array<object>;
+  daily?: Array<object>;
 };
 
 export type addListItem = {
@@ -45,6 +48,12 @@ export type addListItem = {
 };
 
 export type addFinanceItem = {
+  title: string;
+  item: object;
+  id: string;
+};
+
+export type addDailyItem = {
   title: string;
   item: object;
   id: string;

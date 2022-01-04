@@ -1,8 +1,16 @@
-.complete {
-  background-color: rgba(11, 74, 198, 0.1);
-  order: 1;
+.item-main {
+  width: 90%;
+  border: 1px solid #0B4AC6;
+  margin: 0.3rem 0 0.7rem;
+  padding: 0.2rem 2rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 4px;
+  text-align: center;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.complete h2, .complete p {
-  text-decoration: line-through;
+.item-main h2, .item-main p {
+  margin: 0;
 }

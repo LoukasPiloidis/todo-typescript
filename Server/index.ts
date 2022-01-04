@@ -1,6 +1,6 @@
 import { Server, Socket } from 'socket.io';
-import { Item, ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData, EVENTS, removeObject, addListItem, addFinanceItem } from './types';
-import { createItem, getItem, updateStatus, deleteItem, getFilteredItems, updateListItems, updateFinanceItems } from './db';
+import { Item, ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData, EVENTS, removeObject, addListItem, addFinanceItem, addDailyItem } from './types';
+import { createItem, getItem, updateStatus, deleteItem, getFilteredItems, updateListItems, updateFinanceItems, updateDailyItems } from './db';
 
 const port: number = 4000;
 
@@ -28,7 +28,7 @@ io.on("connection", async (socket: Socket) => {
   });
 
   socket.on('addItem', async (newItem: Item) => {
-    const completeItem: Item = {title: newItem.title, complete: false, desc: newItem.desc, id: newItem.id}
+    const completeItem: Item = {title: newItem.title, complete: false, desc: newItem.desc, id: newItem.id, list: [], finance: [], daily: []}
     await createItem(completeItem);
     const data = await getItem(newItem.id);
     io.emit('items', data);
@@ -60,6 +60,12 @@ io.on("connection", async (socket: Socket) => {
 
   socket.on('addFinanceItem', async (value: addFinanceItem) => {
     await updateFinanceItems(value);
+    const data = await getItem(value.id);
+    socket.emit('items', data);
+  });
+
+  socket.on('addDailyItem', async (value: addDailyItem) => {
+    await updateDailyItems(value);
     const data = await getItem(value.id);
     socket.emit('items', data);
   });

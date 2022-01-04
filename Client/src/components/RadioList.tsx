@@ -29,7 +29,9 @@ export const RadioList: React.FC<RadioListProps> = ({ item, addListItem }) => {
         <input type='text' className='add-item-text' placeholder='Add an Item' onChange={handleChange}></input>
         <button className='add-item-btn' onClick={addNewItem} id={item.title}>+</button>
       </form>
-      {items.map((el => <li key={Math.random().toString()}>{el}</li>))}
+      <ul>
+        {items.map((el => <li key={Math.random().toString()}>{el}</li>))}
+      </ul>
       <button type='submit' className='edit-info-btn'>Edit Info</button>
     </div>
   );

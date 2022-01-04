@@ -4,3 +4,7 @@
   flex-direction: column;
   align-items: center;
 }
+
+.radio-list-item ul {
+  width: 55%;
+}

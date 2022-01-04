@@ -28,7 +28,7 @@ export const Item: React.FC<ItemProps> = ({ item, toggleComplete, toggleEdit, to
         <button type='submit' className='edit-btn' id={item.title} onClick={toggleEdit}>Show More</button>
         <button type='submit' className='remove-btn' id={item.title} onClick={toggleRemove}>Delete</button>
       </div>
-      {item.finance && <p>SUM: {getSum()}:-</p>}
+      {item.finance && item.finance.length > 0 && <p>SUM: {getSum()}:-</p>}
     </li>
   );
 };

@@ -36,11 +36,13 @@ export const RadioFinance: React.FC<RadioFinanceProps> = ({ item, addFinanceItem
         <input type='text' className='add-item-text' placeholder='Add price' onChange={handlePriceChange}></input>
         <button className='add-item-btn' onClick={addNewItem} id={item.title}>+</button>
       </form>
+      <ul>
       {items.map((el => el && 
         <li key={Math.random().toString()} className="list-item">
             <p>{el.title}</p>
           <p>{el.price}:-</p>
         </li>))}
+      </ul>
       <button type='submit' className='edit-info-btn'>Edit Info</button>
     </div>
   );
