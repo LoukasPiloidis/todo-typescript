@@ -23,13 +23,9 @@ export const UserCard: React.FC = () => {
   };
 
   const toggleCompleteDaily = (e: React.MouseEvent<HTMLDivElement>, parentItem: string) => {
-    // const selectedItem = items.filter(todo => todo.title === parentItem)[0].daily.filter((todo: dailyItem) => todo.title === e.currentTarget.id)[0];
-
     const initialItem = items.filter(todo => todo.title === parentItem)[0];
     const itemToSend = initialItem.daily.filter((todo: dailyItem) => todo.title === e.currentTarget.id)[0];
-    const index = initialItem.daily.findIndex((todo: dailyItem) => todo.title === e.currentTarget.id).toString();
-    const selectedItem = { title: itemToSend.title, desc: itemToSend.desc, complete: itemToSend.complete, index};
-    console.log(selectedItem);
+    const selectedItem = { title: itemToSend.title, desc: itemToSend.desc, complete: itemToSend.complete, id: initialItem.id};
     socket.emit('changeDailyStatus', { parentItem, selectedItem } );
   };
 

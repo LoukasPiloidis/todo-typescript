@@ -64,6 +64,7 @@ export type dailyItem = {
   desc: string;
   complete: boolean;
   index?: string;
+  id: string;
 };
 
 export type toggleDailyItem = {

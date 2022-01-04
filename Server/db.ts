@@ -71,6 +71,6 @@ export const updateDailyItems = async (item: addDailyItem) => {
 
 export const updateDailyStatus = async (item: toggleDailyItem) => {
   await client.connect();
-  await client.db("Todo-typescript").collection("Items").updateOne({title: item.parentItem, "daily.title": item.selectedItem.title}, { "$set": { "daily.$.complete": { "complete": !item.selectedItem.complete } }});
+  await client.db("Todo-typescript").collection("Items").updateOne({title: item.parentItem, "daily.title": item.selectedItem.title}, { "$set": { "daily.$.complete": !item.selectedItem.complete }});
   await client.close();
 };
