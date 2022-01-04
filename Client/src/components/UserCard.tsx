@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { AddItemForm } from "./AddItemForm";
 import { ItemList } from "./ItemList";
 import '../styles/UserCard.css';
+import { DailyItem } from "./DailyItem";
 
 const SOCKET_URL = process.env.SOCKET_URL || 'http://localhost:4000';
 
@@ -17,8 +18,19 @@ export const UserCard: React.FC = () => {
   socket.on("items", (itemList: Array<Item>) => setItems(itemList));
 
   const toggleComplete = (e: React.MouseEvent<HTMLDivElement>) => {
-    const selectedItem = items.filter(todo => todo.title === e.currentTarget.id)[0];
-    socket.emit('changeStatus', selectedItem);
+      const selectedItem = items.filter(todo => todo.title === e.currentTarget.id)[0];
+      return socket.emit('changeStatus', selectedItem);
+  };
+
+  const toggleCompleteDaily = (e: React.MouseEvent<HTMLDivElement>, parentItem: string) => {
+    // const selectedItem = items.filter(todo => todo.title === parentItem)[0].daily.filter((todo: dailyItem) => todo.title === e.currentTarget.id)[0];
+
+    const initialItem = items.filter(todo => todo.title === parentItem)[0];
+    const itemToSend = initialItem.daily.filter((todo: dailyItem) => todo.title === e.currentTarget.id)[0];
+    const index = initialItem.daily.findIndex((todo: dailyItem) => todo.title === e.currentTarget.id).toString();
+    const selectedItem = { title: itemToSend.title, desc: itemToSend.desc, complete: itemToSend.complete, index};
+    console.log(selectedItem);
+    socket.emit('changeDailyStatus', { parentItem, selectedItem } );
   };
 
   const toggleRemove = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -65,7 +77,7 @@ export const UserCard: React.FC = () => {
         <p className="filter-button" onClick={handleToggleButton} >Pending</p>
         <p className="filter-button" onClick={handleToggleButton} >Reset</p>
       </div>
-      <ItemList items={items} toggleComplete={toggleComplete} toggleRemove={toggleRemove} addListItem={addListItem} addFinanceItem={addFinanceItem} addDailyItem={addDailyItem} />
+      <ItemList items={items} toggleComplete={toggleComplete} toggleRemove={toggleRemove} addListItem={addListItem} addFinanceItem={addFinanceItem} addDailyItem={addDailyItem} toggleCompleteDaily={toggleCompleteDaily} />
     </div>
   );
 };

@@ -15,14 +15,19 @@ type financeItem = {
   price: string;
 };
 
-// type dailyItem = {
-//   title: string;
-//   desc: string;
-//   complete: boolean;
-//   id: string;
-// };
+type dailyItem = {
+  title: string;
+  desc: string;
+};
+
+type toggleDailyItem = {
+  parentItem: string;
+  selectedItem: dailyItem;
+}
 
 type ToggleComplete = (event: React.MouseEvent<HTMLDivElement>) => void;
+
+type ToggleCompleteDaily = (event: React.MouseEvent<HTMLDivElement>, parentItem: string) => void;
 
 type ToggleEdit = (event: React.MouseEvent<HTMLButtonElement>) => void;
 
@@ -58,5 +63,5 @@ interface ClientToServerEvents {
   addListItem: (value: object | undefined) => void;
   addFinanceItem: (value: object | undefined) => void;
   addDailyItem: (value: object | undefined) => void;
-
+  changeDailyStatus: (object: object) => void;
 }

@@ -6,10 +6,10 @@ import '../styles/RadioDaily.css';
 interface RadioDailyProps {
   item: Item;
   addDailyItem: AddDailyItem;
+  toggleCompleteDaily: ToggleCompleteDaily;
 };
 
-export const RadioDaily: React.FC<RadioDailyProps> = ({ item, addDailyItem }) => {
-  
+export const RadioDaily: React.FC<RadioDailyProps> = ({ item, addDailyItem, toggleCompleteDaily }) => {
   const [items, setItems] = useState<Array<Item | undefined>>(item.list);
   const [title, setTitle] = useState<string>();
   const [desc, setDesc] = useState<string>();
@@ -40,7 +40,7 @@ export const RadioDaily: React.FC<RadioDailyProps> = ({ item, addDailyItem }) =>
           <p>{el.desc}</p>
         </li>))} */}
       {items && items.map((el => el && 
-        <DailyItem key={Math.random().toString()} item={el} />))}
+        <DailyItem key={Math.random().toString()} item={el} parentItem={item.title} toggleCompleteDaily={toggleCompleteDaily} />))}
       <button type='submit' className='edit-info-btn'>Edit Info</button>
     </div>
   );

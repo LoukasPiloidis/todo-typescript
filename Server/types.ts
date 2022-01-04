@@ -59,6 +59,18 @@ export type addDailyItem = {
   id: string;
 };
 
+export type dailyItem = {
+  title: string;
+  desc: string;
+  complete: boolean;
+  index?: string;
+};
+
+export type toggleDailyItem = {
+  parentItem: string;
+  selectedItem: dailyItem;
+};
+
 export const EVENTS = {
   ITEMS: "ITEMS"
 };

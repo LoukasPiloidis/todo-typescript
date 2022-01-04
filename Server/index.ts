@@ -1,6 +1,6 @@
 import { Server, Socket } from 'socket.io';
-import { Item, ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData, EVENTS, removeObject, addListItem, addFinanceItem, addDailyItem } from './types';
-import { createItem, getItem, updateStatus, deleteItem, getFilteredItems, updateListItems, updateFinanceItems, updateDailyItems } from './db';
+import { Item, ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData, EVENTS, removeObject, addListItem, addFinanceItem, addDailyItem, toggleDailyItem } from './types';
+import { createItem, getItem, updateStatus, deleteItem, getFilteredItems, updateListItems, updateFinanceItems, updateDailyItems, updateDailyStatus } from './db';
 
 const port: number = 4000;
 
@@ -68,5 +68,11 @@ io.on("connection", async (socket: Socket) => {
     await updateDailyItems(value);
     const data = await getItem(value.id);
     socket.emit('items', data);
+  });
+
+  socket.on('changeDailyStatus', async (selectedItem: toggleDailyItem) => {
+    await updateDailyStatus(selectedItem);
+    const data = await getItem(selectedItem.parentItem);
+    io.emit('items', data);
   });
 });
