@@ -13,7 +13,10 @@ const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(SOCKET_URL
 export const UserCard: React.FC = () => {
   const [items, setItems] = useState<Array<Item>>([]);
 
-  const { id } = useParams();
+  const id: string | null = localStorage.getItem('user');
+
+  console.log(id);
+  
 
   socket.on("items", (itemList: Array<Item>) => setItems(itemList));
 
@@ -58,8 +61,6 @@ export const UserCard: React.FC = () => {
   const addFinanceItem = (value: object | undefined) => socket.emit('addFinanceItem', value);
 
   const addDailyItem = (value: object | undefined) => socket.emit('addDailyItem', value);
-
-
 
   useEffect(() => {
     socket.emit('getItems', id);

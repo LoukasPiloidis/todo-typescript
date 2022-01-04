@@ -72,6 +72,11 @@ export type toggleDailyItem = {
   selectedItem: dailyItem;
 };
 
+export type userLoginInfo = {
+  userName: string;
+  pass: string;
+};
+
 export const EVENTS = {
   ITEMS: "ITEMS"
 };

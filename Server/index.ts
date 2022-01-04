@@ -1,6 +1,6 @@
 import { Server, Socket } from 'socket.io';
-import { Item, ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData, EVENTS, removeObject, addListItem, addFinanceItem, addDailyItem, toggleDailyItem } from './types';
-import { createItem, getItem, updateStatus, deleteItem, getFilteredItems, updateListItems, updateFinanceItems, updateDailyItems, updateDailyStatus } from './db';
+import { Item, ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData, EVENTS, removeObject, addListItem, addFinanceItem, addDailyItem, toggleDailyItem, userLoginInfo } from './types';
+import { createItem, getItem, updateStatus, deleteItem, getFilteredItems, updateListItems, updateFinanceItems, updateDailyItems, updateDailyStatus, userLogin } from './db';
 
 const port: number = 4000;
 
@@ -14,11 +14,6 @@ const filterItems =  async(value: boolean, id: string) => {
   
   io.emit('returnFilteredData', filteredItems);
 };
-
-// const userId = io.of('/loukas');
-// userId.on('connection', (socket: Socket) => {
-//   console.log('we are connected to Loukas user');
-// })
 
 io.on("connection", async (socket: Socket) => {
 
@@ -74,5 +69,10 @@ io.on("connection", async (socket: Socket) => {
     await updateDailyStatus(selectedItem);
     const data = await getItem(selectedItem.selectedItem.id);
     io.emit('items', data);
+  });
+
+  socket.on('login', async (item: userLoginInfo) => {
+    const user = await userLogin(item);
+    socket.emit('loginResult', user);
   });
 });

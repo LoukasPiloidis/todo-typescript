@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 import { config } from 'dotenv';
-import { Item, addListItem, addFinanceItem, addDailyItem, toggleDailyItem } from './types';
+import { Item, addListItem, addFinanceItem, addDailyItem, toggleDailyItem, userLoginInfo } from './types';
 
 config();
 
@@ -20,8 +20,10 @@ export const getItem = async (id: string) => {
   return new Promise((resolve, reject) => {
     client.db("Todo-typescript").collection("Items").find({id}).toArray((err, data) => {
       if (err) {
+      client.close();
       return reject(err);
       };
+    client.close();
     return resolve(data);
     });
   });
@@ -32,8 +34,10 @@ export const getFilteredItems = async (status: boolean, id: string) => {
   return new Promise((resolve, reject) => {
     client.db("Todo-typescript").collection("Items").find({complete: status, id}).toArray((err, data) => {
       if (err) {
+      client.close();
       return reject(err);
       };
+    client.close();
     return resolve(data);
     });
   });
@@ -73,4 +77,12 @@ export const updateDailyStatus = async (item: toggleDailyItem) => {
   await client.connect();
   await client.db("Todo-typescript").collection("Items").updateOne({title: item.parentItem, "daily.title": item.selectedItem.title}, { "$set": { "daily.$.complete": !item.selectedItem.complete }});
   await client.close();
+};
+
+export const userLogin = async (item: userLoginInfo) => {
+  await client.connect();
+  // console.log(item);
+  const user = await client.db("Todo-typescript").collection("Users").findOne({username: item.userName, password: item.pass});
+  await client.close();
+  return user;
 };
