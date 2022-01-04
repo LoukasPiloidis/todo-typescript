@@ -54,7 +54,7 @@ type AddFinanceItem = (value: object | undefined) => void;
 
 type AddDailyItem = (value: object | undefined) => void;
 
-type GetUser = (user: string | undefined) => void;
+type GetUser = (user: string | null) => void;
 
 interface ServerToClientEvents {
   noArg: () => void;

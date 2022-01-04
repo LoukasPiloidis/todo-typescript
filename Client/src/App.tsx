@@ -14,17 +14,20 @@ import Burger from "./components/Burger";
 // const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(SOCKET_URL);
 
 const App = () => {
-  
+  const [user, setUser] = useState<string | null>(null);
+
+  const getUser = (user: string | null) => setUser(user);
+
   return(
     <React.Fragment>
-        <Burger />
+        <Burger user={user} />
         <h1>Todo app on Steroids</h1>
         <Routes>
           <Route path='/' element={<Welcome />}>
           </Route>
-          <Route path="/logout" element={<Logout />}>
+          <Route path="/logout" element={<Logout getUser={getUser} />}>
           </Route>
-          <Route path="/:id" element={<UserCard />}>
+          <Route path="/:id" element={<UserCard getUser={getUser} />}>
           </Route>
         </Routes>
     </React.Fragment>

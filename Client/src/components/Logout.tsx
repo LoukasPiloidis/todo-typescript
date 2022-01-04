@@ -1,8 +1,12 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../styles/Logout.css';
 
-export const Logout: React.FC = () => {
+interface LogoutProps {
+  getUser: GetUser;
+};
+
+export const Logout: React.FC<LogoutProps> = ({ getUser }) => {
 
   const navigate = useNavigate();
 
@@ -15,11 +19,15 @@ export const Logout: React.FC = () => {
     navigate('/');
   };
 
+  useEffect(() => {
+    getUser(localStorage.getItem('user'));
+  }, [])
+
   return (
     <div className="login__main">
       <p>Are you sure you want to log out?</p>
-      <button type='submit' className="main__button" onClick={handleSubmit}>Yes</button>
-      <button type='submit' className="main__button" onClick={handleSubmit}>No</button>
+      <button className="main__button" onClick={handleSubmit}>Yes</button>
+      <button className="main__button"><a href={`${localStorage.getItem('user')}`}>No</a></button>
     </div>
   );
 };

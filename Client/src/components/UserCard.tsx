@@ -10,7 +10,11 @@ const SOCKET_URL = process.env.SOCKET_URL || 'http://localhost:4000';
 
 const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(SOCKET_URL);
 
-export const UserCard: React.FC = () => {
+interface UserCardProps {
+  getUser: GetUser;
+};
+
+export const UserCard: React.FC<UserCardProps> = ({ getUser }) => {
   const [items, setItems] = useState<Array<Item>>([]);
 
   const id: string | null = localStorage.getItem('user');
@@ -60,6 +64,7 @@ export const UserCard: React.FC = () => {
   const addDailyItem = (value: object | undefined) => socket.emit('addDailyItem', value);
 
   useEffect(() => {
+    getUser(id);
     socket.emit('getItems', id);
   }, []);
   

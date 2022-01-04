@@ -6,6 +6,7 @@ import '../styles/Login.css';
 export const Login: React.FC = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassname] = useState<string>('');
+  const [fail, setFail] = useState<string | undefined>();
 
   const navigate = useNavigate();
 
@@ -13,7 +14,7 @@ export const Login: React.FC = () => {
   const handlePassChange = (e: ChangeEvent<HTMLInputElement>) => setPassname(e.currentTarget.value);
 
   const handleNavigate = (user: loginInfo | null) => {
-    if (!user) { return console.log('login failed') };
+    if (!user) { return setFail('login failed') };
     if (user) { 
       localStorage.setItem('user', user.username);
       return navigate(user.username);
@@ -27,6 +28,7 @@ export const Login: React.FC = () => {
       <label className="main__title">Login</label>
       <input type='text' className="main__input" placeholder="enter your username" onChange={handleUserChange}></input>
       <input type='text' className="main__input" placeholder="enter your password" onChange={handlePassChange}></input>
+      <p>{fail}</p>
       <button type='submit' className="main__button" onClick={handleExistingSubmit}>Go</button>
     </div>
   );
