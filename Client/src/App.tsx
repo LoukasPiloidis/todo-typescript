@@ -6,19 +6,23 @@ import { io, Socket } from "socket.io-client";
 import { Welcome } from './components/Welcome';
 import './styles/App.css';
 import { UserCard } from "./components/UserCard";
-import { Login } from "./components/Login";
+import { Logout } from "./components/Logout";
+import Burger from "./components/Burger";
 
 // const SOCKET_URL = process.env.SOCKET_URL || 'http://localhost:4000';
 
 // const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(SOCKET_URL);
 
 const App = () => {
-
+  
   return(
     <React.Fragment>
+        <Burger />
         <h1>Todo app on Steroids</h1>
         <Routes>
           <Route path='/' element={<Welcome />}>
+          </Route>
+          <Route path="/logout" element={<Logout />}>
           </Route>
           <Route path="/:id" element={<UserCard />}>
           </Route>

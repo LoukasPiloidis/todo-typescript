@@ -35,7 +35,7 @@ export const Welcome: React.FC = () => {
   return (
     <div className="welcome__main">
       {/* <button type='submit' className="main__button" onClick={handleLogin}>Login</button> */}
-      <div className="hidden">
+      <div>
         <Login />
       </div>
         <Signup />

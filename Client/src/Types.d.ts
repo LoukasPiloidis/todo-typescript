@@ -31,6 +31,11 @@ type loginInfo = {
   id: string;
 }
 
+type burgerItem = {
+  name: string;
+  url: string;
+}
+
 type ToggleComplete = (event: React.MouseEvent<HTMLDivElement>) => void;
 
 type ToggleCompleteDaily = (event: React.MouseEvent<HTMLDivElement>, parentItem: string) => void;
@@ -49,6 +54,7 @@ type AddFinanceItem = (value: object | undefined) => void;
 
 type AddDailyItem = (value: object | undefined) => void;
 
+type GetUser = (user: string | undefined) => void;
 
 interface ServerToClientEvents {
   noArg: () => void;

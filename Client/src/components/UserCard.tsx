@@ -15,9 +15,6 @@ export const UserCard: React.FC = () => {
 
   const id: string | null = localStorage.getItem('user');
 
-  console.log(id);
-  
-
   socket.on("items", (itemList: Array<Item>) => setItems(itemList));
 
   const toggleComplete = (e: React.MouseEvent<HTMLDivElement>) => {
