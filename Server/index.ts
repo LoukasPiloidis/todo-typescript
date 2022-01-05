@@ -1,4 +1,5 @@
 import { Server, Socket } from 'socket.io';
+import { config } from 'dotenv';
 import { Item, 
   ClientToServerEvents, 
   ServerToClientEvents, 
@@ -23,7 +24,9 @@ import { createItem,
   userLogin, 
   userSignup } from './db.js';
 
-const port: number = 4000;
+config();
+
+const port: any = process.env.PORT || 4000;
 
 const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(port, {
   cors: {

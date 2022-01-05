@@ -8,8 +8,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { Server } from 'socket.io';
+import { config } from 'dotenv';
 import { createItem, getItem, updateStatus, deleteItem, getFilteredItems, updateListItems, updateFinanceItems, updateDailyItems, updateDailyStatus, userLogin, userSignup } from './db.js';
-const port = 4000;
+config();
+const port = process.env.PORT || 4000;
 const io = new Server(port, {
     cors: {
         origin: 'https://todo-loukas.herokuapp.com/',

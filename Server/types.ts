@@ -28,7 +28,6 @@ export interface removeObject {
   id: string
 };
 
-
 export type Item = {
   title: string;
   complete: boolean;
