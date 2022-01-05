@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
 import '../styles/Item.css';
 
 interface ItemProps {
@@ -9,6 +9,7 @@ interface ItemProps {
 }
 
 export const Item: React.FC<ItemProps> = ({ item, toggleComplete, toggleEdit, toggleRemove }) => {
+  const [completedList, setCompletedList] = useState<boolean>(false);
 
   const getSum = () => {
     let sum = 0;
@@ -16,9 +17,15 @@ export const Item: React.FC<ItemProps> = ({ item, toggleComplete, toggleEdit, to
     return sum;
   };
 
+  useEffect(() => {
+    if (item.list.length > 1 && item.list.every((el: listItem) => el.complete)) {
+      return setCompletedList(true);
+    };
+    setCompletedList(false);
+  }, [item.list])
+
   return (
-    <li className={`item-main ${item.complete ? "complete" : ''}`}>
-      {item.list && item.list.length > 1 && item.list.every((el: listItem) => el.complete) ? item.complete = true : item.complete = false}
+    <li className={`item-main ${item.complete || completedList ? "complete" : ''}`}>
       <div onClick={toggleComplete} id={item.title}>
         <h2 className="item__title">
           {item.title}
