@@ -7,8 +7,8 @@ export const Welcome: React.FC = () => {
 
   return (
     <div className="welcome__main">
-        <Login />
-        <Signup />
+      <Signup />
+      <p className="login-prompt">Already a user? Login <a href="/login">here</a></p>
     </div>
   );
 };

@@ -17,7 +17,7 @@ export const Login: React.FC = () => {
     if (!user) { return setFail('login failed') };
     if (user) { 
       localStorage.setItem('user', user.username);
-      return navigate(user.username);
+      return navigate(`/${user.username}`);
     }; 
   };
 
@@ -28,12 +28,14 @@ export const Login: React.FC = () => {
   }, [fail]);
 
   return (
-    <div className="login__main">
-      <label className="main__title">Login</label>
-      <input type='text' className="main__input" placeholder="enter your username" onChange={handleUserChange}></input>
-      <input type='password' className="main__input" placeholder="enter your password" onChange={handlePassChange}></input>
-      <p>{fail}</p>
-      <button type='submit' className="login__button" onClick={handleExistingSubmit}>Go</button>
+    <div className="login-wrapper">
+      <div className="login__main">
+        <label className="main__title">Login</label>
+        <input type='text' className="main__input" placeholder="enter your username" onChange={handleUserChange}></input>
+        <input type='password' className="main__input" placeholder="enter your password" onChange={handlePassChange}></input>
+        <p>{fail}</p>
+        <button type='submit' className="login__button" onClick={handleExistingSubmit}>Go</button>
+      </div>
     </div>
   );
 };
