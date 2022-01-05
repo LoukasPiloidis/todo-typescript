@@ -29,10 +29,9 @@ config();
 const port: any = process.env.PORT || 4000;
 
 const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(port, {
-  cors: {
-    origin: 'https://todo-loukas.herokuapp.com/',
-    allowedHeaders: ["Access-Control-Allow-Origin", "https://todo-loukas.herokuapp.com/"],
-    credentials: true
+  allowRequest: (req, callback) => {
+    const noOriginHeader = req.headers.origin === undefined;
+    callback(null, noOriginHeader);
   },
 });
 

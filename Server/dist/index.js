@@ -13,10 +13,9 @@ import { createItem, getItem, updateStatus, deleteItem, getFilteredItems, update
 config();
 const port = process.env.PORT || 4000;
 const io = new Server(port, {
-    cors: {
-        origin: 'https://todo-loukas.herokuapp.com/',
-        allowedHeaders: ["Access-Control-Allow-Origin", "https://todo-loukas.herokuapp.com/"],
-        credentials: true
+    allowRequest: (req, callback) => {
+        const noOriginHeader = req.headers.origin === undefined;
+        callback(null, noOriginHeader);
     },
 });
 const filterItems = (value, id) => __awaiter(void 0, void 0, void 0, function* () {
