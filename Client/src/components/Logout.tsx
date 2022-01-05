@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../styles/Logout.css';
 
@@ -7,20 +7,22 @@ interface LogoutProps {
 };
 
 export const Logout: React.FC<LogoutProps> = ({ getUser }) => {
+  const [user, setUser] = useState<string | null>(null);
 
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const button = e.currentTarget.textContent;
     if (button === 'No') {
-      return navigate('user');
+      return navigate(`/${user}`);;
     }
     localStorage.removeItem('user');
     navigate('/');
   };
 
   useEffect(() => {
-    getUser(localStorage.getItem('user'));
+    setUser(localStorage.getItem('user'));
+    getUser(user);
   }, [])
 
   return (
@@ -28,9 +30,7 @@ export const Logout: React.FC<LogoutProps> = ({ getUser }) => {
       <h2 className="logout__prompt">Are you sure you want to log out?</h2>
       <div className="logout-buttons">
         <button className="logout__button" onClick={handleSubmit}>Yes</button>
-        <form className="logout__form" action={`https://todo-loukas.herokuapp.com/${localStorage.getItem('user')}`}>
-          <input type='submit' className="logout__button input" value='No' />
-        </form>
+        <button className="logout__button" onClick={handleSubmit}>No</button>
       </div>
     </div>
   );

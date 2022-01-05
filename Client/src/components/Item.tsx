@@ -18,7 +18,7 @@ export const Item: React.FC<ItemProps> = ({ item, toggleComplete, toggleEdit, to
 
   return (
     <li className={`item-main ${item.complete ? "complete" : ''}`}>
-      {item.list.length > 1 && item.list.every((el: listItem) => el.complete) ? item.complete = true : item.complete = false}
+      {item.list && item.list.length > 1 && item.list.every((el: listItem) => el.complete) ? item.complete = true : item.complete = false}
       <div onClick={toggleComplete} id={item.title}>
         <h2 className="item__title">
           {item.title}
