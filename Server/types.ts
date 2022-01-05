@@ -60,7 +60,7 @@ export type addDailyItem = {
 
 export type dailyItem = {
   title: string;
-  desc: string;
+  desc?: string;
   complete: boolean;
   index?: string;
   id: string;

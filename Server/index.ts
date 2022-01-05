@@ -21,6 +21,7 @@ import { createItem,
   updateFinanceItems, 
   updateDailyItems, 
   updateDailyStatus, 
+  updateListStatus,
   userLogin, 
   userSignup } from './db.js';
 
@@ -99,6 +100,12 @@ io.on("connection", async (socket: Socket) => {
 
   socket.on('changeDailyStatus', async (selectedItem: toggleDailyItem) => {
     await updateDailyStatus(selectedItem);
+    const data = await getItem(selectedItem.selectedItem.id);
+    io.emit('items', data);
+  });
+
+  socket.on('changeListStatus', async (selectedItem: toggleDailyItem) => {
+    await updateListStatus(selectedItem);
     const data = await getItem(selectedItem.selectedItem.id);
     io.emit('items', data);
   });

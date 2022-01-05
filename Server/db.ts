@@ -83,6 +83,12 @@ export const updateDailyStatus = async (item: toggleDailyItem) => {
   await client.close();
 };
 
+export const updateListStatus = async (item: toggleDailyItem) => {
+  await client.connect();
+  await client.db("Todo-typescript").collection("Items").updateOne({title: item.parentItem, "list.title": item.selectedItem.title}, { "$set": { "list.$.complete": !item.selectedItem.complete }});
+  await client.close();
+};
+
 export const userLogin = async (item: userLoginInfo) => {
   await client.connect();
   const user = await client.db("Todo-typescript").collection("Users").findOne({username: item.userName, password: item.pass});
