@@ -82,9 +82,11 @@ io.on("connection", async (socket: Socket) => {
   });
 
   socket.on('signup', async (item: userSignupInfo) => {
-    await userSignup(item);
+    const signup = await userSignup(item);
+    if (signup === 'duplicate value') {
+      return socket.emit('loginResult', {username: 'This user already exists' });
+    };
     const user = await userLogin({userName: item.username, pass: item.password});
-    console.log(user);
     socket.emit('loginResult', user);
   });
 });

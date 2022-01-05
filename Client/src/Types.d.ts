@@ -27,8 +27,8 @@ type toggleDailyItem = {
 
 type loginInfo = {
   username: string;
-  password: string;
-  id: string;
+  password?: string;
+  id?: string;
 }
 
 type burgerItem = {
@@ -63,7 +63,8 @@ interface ServerToClientEvents {
   items: (itemList: Array<Item>) => void;
   returnFilteredData: (filteredData: Array<Item>) => void;
   loginResult: (user: loginInfo | null) => Function | void;
-}
+  loginFailed: () => void;
+};
 
 interface ClientToServerEvents {
   hello: () => void;
@@ -80,4 +81,4 @@ interface ClientToServerEvents {
   changeDailyStatus: (object: object) => void;
   login: (object: object) => void;
   signup: (object: object) => void;
-}
+};

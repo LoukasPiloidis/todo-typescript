@@ -11,5 +11,7 @@ export const authenticateUser = (async (userName: string, pass: string, callback
 
 export const createUser = (username: string, password: string, callback: Function) => {
   socket.emit('signup', { username, password, id: Date.now() });
-  socket.on('loginResult', (user: loginInfo | null) => callback(user));
+  socket.on('loginResult', (user: loginInfo | null | string) => callback(user));
 };
+
+// export const catchDuplicate = (callback: Function) => socket.on('loginFailed', () => callback());

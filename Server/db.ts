@@ -86,6 +86,11 @@ export const userLogin = async (item: userLoginInfo) => {
 
 export const userSignup = async (item: userSignupInfo) => {
   await client.connect();
-  await client.db("Todo-typescript").collection("Users").insertOne(item);
+  try {
+    await client.db("Todo-typescript").collection("Users").insertOne(item);
+  } catch(err) {
+    await client.close();
+    return 'duplicate value';
+  };
   await client.close();
 };
