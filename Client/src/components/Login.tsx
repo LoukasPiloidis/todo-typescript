@@ -33,7 +33,7 @@ export const Login: React.FC = () => {
       <input type='text' className="main__input" placeholder="enter your username" onChange={handleUserChange}></input>
       <input type='password' className="main__input" placeholder="enter your password" onChange={handlePassChange}></input>
       <p>{fail}</p>
-      <button type='submit' className="main__button" onClick={handleExistingSubmit}>Go</button>
+      <button type='submit' className="login__button" onClick={handleExistingSubmit}>Go</button>
     </div>
   );
 };

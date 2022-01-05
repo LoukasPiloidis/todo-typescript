@@ -8,6 +8,7 @@
   border-radius: 4px;
   text-align: center;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  min-width: 300px;
 }
 
 .item-main h2, .item-main p, .item-main button {

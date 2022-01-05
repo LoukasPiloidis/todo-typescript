@@ -37,7 +37,7 @@ export const Signup: React.FC = () => {
       <input type='password' className="main__input" placeholder="enter a password" onChange={handlePassChange}></input>
       <input type='password' className="main__input" placeholder="reenter a password" onChange={handlePass2Change}></input>
       <p>{loginFail}</p>
-      <button type='submit' className="main__button" onClick={handleNewSubmit}>Create</button>
+      <button type='submit' className="signup__button" onClick={handleNewSubmit}>Create</button>
     </div>
   );
 };

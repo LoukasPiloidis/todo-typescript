@@ -1,4 +1,5 @@
 .welcome__main {
+  min-width: 500px;
   width: 40%;
   margin: auto;
   display: flex;
@@ -11,6 +12,7 @@
 @media only screen and (max-width: 450px) {
   .welcome__main {
     width: 70%;
+    min-width: 250px;
   }
 }
 
@@ -29,7 +31,7 @@
   font-size: 16px;
 }
 
-.main__button {
+/* .main__button {
   padding: 0.2rem;
   border-radius: 4px;
   width: 15%;
@@ -43,4 +45,4 @@
   .main__button {
     width: 25%;
   }
-}
+} */

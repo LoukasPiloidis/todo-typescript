@@ -13,6 +13,18 @@
   width: 100%;
 }
 
-.main__button {
-  width: 35%;
+.signup__button {
+  padding: 0.2rem;
+  border-radius: 4px;
+  width: 15%;
+  background-color: #0B4AC6;
+  color: white;
+  font-size: 18px;
+  margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 450px) {
+  .signup__button {
+    width: 30%;
+  }
 }

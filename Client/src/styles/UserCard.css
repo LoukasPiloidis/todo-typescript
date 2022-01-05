@@ -1,5 +1,6 @@
 .container-filter {
   width: 30%;
+  min-width: 350px;
   margin: auto;
   margin-top: 1rem;
   display: flex;
