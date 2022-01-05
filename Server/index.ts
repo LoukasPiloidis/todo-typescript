@@ -26,7 +26,7 @@ import { createItem,
 const port: number = 4000;
 
 const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(port, {
-  cors: {origin: ['http://localhost:3000']}
+  cors: {origin: ['https://todo-loukas.herokuapp.com/']}
 });
 
 const filterItems =  async(value: boolean, id: string) => {
