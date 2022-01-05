@@ -40,10 +40,16 @@ export type Item = {
   daily?: Array<object>;
 };
 
+type fullElement = {
+  element: string;
+  complete: boolean;
+}
+
 export type addListItem = {
   title: string;
-  element: string;
+  fullElement: fullElement;
   id: string;
+  complete: boolean;
 };
 
 export type addFinanceItem = {

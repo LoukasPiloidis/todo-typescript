@@ -61,7 +61,7 @@ export const deleteItem = async (item: string) => {
 
 export const updateListItems = async (item: addListItem) => {
   await client.connect();
-  await client.db("Todo-typescript").collection("Items").updateOne({ title: item.title }, { $push: { list: item.element }});
+  await client.db("Todo-typescript").collection("Items").updateOne({ title: item.title }, { $push: { list: item.fullElement }});
   await client.close();
 };
 
@@ -85,7 +85,7 @@ export const updateDailyStatus = async (item: toggleDailyItem) => {
 
 export const updateListStatus = async (item: toggleDailyItem) => {
   await client.connect();
-  await client.db("Todo-typescript").collection("Items").updateOne({title: item.parentItem, "list.title": item.selectedItem.title}, { "$set": { "list.$.complete": !item.selectedItem.complete }});
+  await client.db("Todo-typescript").collection("Items").updateOne({title: item.parentItem, "list.element": item.selectedItem.title}, { "$set": { "list.$.complete": !item.selectedItem.complete }});
   await client.close();
 };
 

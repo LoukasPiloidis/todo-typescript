@@ -13,9 +13,10 @@ interface ItemListProps {
   addFinanceItem: AddFinanceItem;
   addDailyItem: AddDailyItem;
   toggleCompleteDaily: ToggleCompleteDaily;
+  toggleCompleteList: ToggleCompleteList;
 }
 
-export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete, toggleRemove, addListItem, addFinanceItem, addDailyItem, toggleCompleteDaily }) => {
+export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete, toggleRemove, addListItem, addFinanceItem, addDailyItem, toggleCompleteDaily, toggleCompleteList }) => {
   const [editedItem, setEditedItem] = useState<Item>();
   const [listValue, setListValue] = useState<string>('');
 
@@ -60,7 +61,7 @@ export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete, toggl
           </form>
           <h2>{editedItem.title}</h2>
           <p>{editedItem.desc}</p>
-          {listValue === 'list' && <RadioList item={editedItem} addListItem={addListItem} />}
+          {listValue === 'list' && <RadioList item={editedItem} addListItem={addListItem} toggleCompleteList={toggleCompleteList} />}
           {listValue === 'finance' && <RadioFinance item={editedItem} addFinanceItem={addFinanceItem} />}
           {listValue === 'daily' && <RadioDaily item={editedItem} addDailyItem={addDailyItem} toggleCompleteDaily={toggleCompleteDaily} />}
         </div>

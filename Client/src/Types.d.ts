@@ -20,6 +20,11 @@ type dailyItem = {
   desc: string;
 };
 
+type listItem = {
+  element: string;
+  complete: boolean;
+};
+
 type toggleDailyItem = {
   parentItem: string;
   selectedItem: dailyItem;
@@ -39,6 +44,8 @@ type burgerItem = {
 type ToggleComplete = (event: React.MouseEvent<HTMLDivElement>) => void;
 
 type ToggleCompleteDaily = (event: React.MouseEvent<HTMLDivElement>, parentItem: string) => void;
+
+type ToggleCompleteList = (event: React.MouseEvent<HTMLLIElement>, parentItem: string) => void;
 
 type ToggleEdit = (event: React.MouseEvent<HTMLButtonElement>) => void;
 
@@ -79,6 +86,7 @@ interface ClientToServerEvents {
   addFinanceItem: (value: object | undefined) => void;
   addDailyItem: (value: object | undefined) => void;
   changeDailyStatus: (object: object) => void;
+  changeListStatus: (object: object) => void;
   login: (object: object) => void;
   signup: (object: object) => void;
 };

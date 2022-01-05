@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { Server } from 'socket.io';
 import { config } from 'dotenv';
-import { createItem, getItem, updateStatus, deleteItem, getFilteredItems, updateListItems, updateFinanceItems, updateDailyItems, updateDailyStatus, userLogin, userSignup } from './db.js';
+import { createItem, getItem, updateStatus, deleteItem, getFilteredItems, updateListItems, updateFinanceItems, updateDailyItems, updateDailyStatus, updateListStatus, userLogin, userSignup } from './db.js';
 config();
 const port = process.env.PORT || 4000;
 const io = new Server(port, {
@@ -39,7 +39,6 @@ io.on("connection", (socket) => __awaiter(void 0, void 0, void 0, function* () {
         io.emit('items', data);
     }));
     socket.on('removeItem', (selectedItem) => __awaiter(void 0, void 0, void 0, function* () {
-        console.log(selectedItem);
         yield deleteItem(selectedItem.title);
         const data = yield getItem(selectedItem.id);
         io.emit('items', data);
@@ -67,6 +66,11 @@ io.on("connection", (socket) => __awaiter(void 0, void 0, void 0, function* () {
     }));
     socket.on('changeDailyStatus', (selectedItem) => __awaiter(void 0, void 0, void 0, function* () {
         yield updateDailyStatus(selectedItem);
+        const data = yield getItem(selectedItem.selectedItem.id);
+        io.emit('items', data);
+    }));
+    socket.on('changeListStatus', (selectedItem) => __awaiter(void 0, void 0, void 0, function* () {
+        yield updateListStatus(selectedItem);
         const data = yield getItem(selectedItem.selectedItem.id);
         io.emit('items', data);
     }));

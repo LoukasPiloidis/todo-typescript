@@ -4,19 +4,22 @@ import '../styles/RadioList.css';
 interface RadioListProps {
   item: Item;
   addListItem: AddListItem;
+  toggleCompleteList: ToggleCompleteList;
 };
 
-export const RadioList: React.FC<RadioListProps> = ({ item, addListItem }) => {
-  
-  const [items, setItems] = useState<Array<string | undefined>>(item.list);
+export const RadioList: React.FC<RadioListProps> = ({ item, addListItem, toggleCompleteList }) => {
+  const [items, setItems] = useState<Array<listItem | undefined>>(item.list);
   const [element, setElement] = useState<string>();
 
   const addNewItem = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    addListItem({ title: e.currentTarget.id, element, id: item.id });
+    const fullElement = { element, complete: false}
+    addListItem({ title: e.currentTarget.id, fullElement, id: item.id, complete: false });
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => setElement(e.currentTarget.value);
+
+  const handleComplete = (e: React.MouseEvent<HTMLLIElement>) => toggleCompleteList(e, item.title);
 
   useEffect(() => {
     setItems(item.list);
@@ -29,7 +32,7 @@ export const RadioList: React.FC<RadioListProps> = ({ item, addListItem }) => {
         <button className='add-item-btn' onClick={addNewItem} id={item.title}>+</button>
       </form>
       <ul>
-        {items.map((el => <li key={Math.random().toString()}>{el}</li>))}
+        {items.map((el => <li className={`${el?.complete ? "completed" : ''}`} key={Math.random().toString()} onClick={handleComplete} >{el?.element}</li>))}
       </ul>
     </div>
   );

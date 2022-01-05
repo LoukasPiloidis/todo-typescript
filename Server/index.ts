@@ -64,8 +64,6 @@ io.on("connection", async (socket: Socket) => {
   });
 
   socket.on('removeItem', async (selectedItem: removeObject) => {
-    console.log(selectedItem);
-    
     await deleteItem(selectedItem.title);
     const data = await getItem(selectedItem.id);
     io.emit('items', data);

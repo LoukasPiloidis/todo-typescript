@@ -57,7 +57,7 @@ export const deleteItem = (item) => __awaiter(void 0, void 0, void 0, function* 
 });
 export const updateListItems = (item) => __awaiter(void 0, void 0, void 0, function* () {
     yield client.connect();
-    yield client.db("Todo-typescript").collection("Items").updateOne({ title: item.title }, { $push: { list: item.element } });
+    yield client.db("Todo-typescript").collection("Items").updateOne({ title: item.title }, { $push: { list: item.fullElement } });
     yield client.close();
 });
 export const updateFinanceItems = (item) => __awaiter(void 0, void 0, void 0, function* () {
@@ -73,6 +73,11 @@ export const updateDailyItems = (item) => __awaiter(void 0, void 0, void 0, func
 export const updateDailyStatus = (item) => __awaiter(void 0, void 0, void 0, function* () {
     yield client.connect();
     yield client.db("Todo-typescript").collection("Items").updateOne({ title: item.parentItem, "daily.title": item.selectedItem.title }, { "$set": { "daily.$.complete": !item.selectedItem.complete } });
+    yield client.close();
+});
+export const updateListStatus = (item) => __awaiter(void 0, void 0, void 0, function* () {
+    yield client.connect();
+    yield client.db("Todo-typescript").collection("Items").updateOne({ title: item.parentItem, "list.element": item.selectedItem.title }, { "$set": { "list.$.complete": !item.selectedItem.complete } });
     yield client.close();
 });
 export const userLogin = (item) => __awaiter(void 0, void 0, void 0, function* () {

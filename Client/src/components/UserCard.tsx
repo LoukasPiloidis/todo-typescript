@@ -6,6 +6,8 @@ import '../styles/UserCard.css';
 
 const SOCKET_URL = 'https://todo-types-server.herokuapp.com/';
 
+// const SOCKET_URL = 'http://localhost:4000';
+
 const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(SOCKET_URL);
 
 interface UserCardProps {
@@ -29,6 +31,13 @@ export const UserCard: React.FC<UserCardProps> = ({ getUser }) => {
     const itemToSend = initialItem.daily.filter((todo: dailyItem) => todo.title === e.currentTarget.id)[0];
     const selectedItem = { title: itemToSend.title, desc: itemToSend.desc, complete: itemToSend.complete, id: initialItem.id};
     socket.emit('changeDailyStatus', { parentItem, selectedItem } );
+  };
+
+  const toggleCompleteList = (e: React.MouseEvent<HTMLLIElement>, parentItem: string) => {
+    const initialItem = items.filter(todo => todo.title === parentItem)[0];
+    const itemToSend = initialItem.list.filter((todo: listItem) => todo.element === e.currentTarget.textContent)[0];
+    const selectedItem = { title: itemToSend.element, complete: itemToSend.complete, id: initialItem.id};
+    socket.emit('changeListStatus', { parentItem, selectedItem } );
   };
 
   const toggleRemove = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -77,7 +86,7 @@ export const UserCard: React.FC<UserCardProps> = ({ getUser }) => {
         <p className="filter-button" onClick={handleToggleButton} >Pending</p>
         <p className="filter-button" onClick={handleToggleButton} >Reset</p>
       </div>
-      <ItemList items={items} toggleComplete={toggleComplete} toggleRemove={toggleRemove} addListItem={addListItem} addFinanceItem={addFinanceItem} addDailyItem={addDailyItem} toggleCompleteDaily={toggleCompleteDaily} />
+      <ItemList items={items} toggleComplete={toggleComplete} toggleRemove={toggleRemove} addListItem={addListItem} addFinanceItem={addFinanceItem} addDailyItem={addDailyItem} toggleCompleteDaily={toggleCompleteDaily} toggleCompleteList={toggleCompleteList} />
     </div>
   );
 };
