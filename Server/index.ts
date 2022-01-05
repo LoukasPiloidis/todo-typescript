@@ -29,9 +29,9 @@ config();
 const port: any = process.env.PORT || 4000;
 
 const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(port, {
-  allowRequest: (req, callback) => {
-    const noOriginHeader = req.headers.origin === undefined;
-    callback(null, noOriginHeader);
+  cors: {
+    allowedHeaders: ["Access-Control-Allow-Origin", "*"],
+    credentials: true
   },
 });
 

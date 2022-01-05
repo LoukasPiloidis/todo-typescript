@@ -13,9 +13,9 @@ import { createItem, getItem, updateStatus, deleteItem, getFilteredItems, update
 config();
 const port = process.env.PORT || 4000;
 const io = new Server(port, {
-    allowRequest: (req, callback) => {
-        const noOriginHeader = req.headers.origin === undefined;
-        callback(null, noOriginHeader);
+    cors: {
+        allowedHeaders: ["Access-Control-Allow-Origin", "*"],
+        credentials: true
     },
 });
 const filterItems = (value, id) => __awaiter(void 0, void 0, void 0, function* () {
