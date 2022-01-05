@@ -4,7 +4,7 @@ import { AddItemForm } from "./AddItemForm";
 import { ItemList } from "./ItemList";
 import '../styles/UserCard.css';
 
-const SOCKET_URL = process.env.SOCKET_URL || 'http://localhost:4000';
+const SOCKET_URL = 'https://todo-types-server.herokuapp.com/';
 
 const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(SOCKET_URL);
 
