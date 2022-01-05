@@ -39,9 +39,10 @@ export const RadioDaily: React.FC<RadioDailyProps> = ({ item, addDailyItem, togg
           <h2>{el.title}</h2>
           <p>{el.desc}</p>
         </li>))} */}
-      {items && items.map((el => el && 
-        <DailyItem key={Math.random().toString()} item={el} parentItem={item.title} toggleCompleteDaily={toggleCompleteDaily} />))}
-      <button type='submit' className='edit-info-btn'>Edit Info</button>
+      <div className="item-list">
+        {items && items.map((el => el && 
+          <DailyItem key={Math.random().toString()} item={el} parentItem={item.title} toggleCompleteDaily={toggleCompleteDaily} />))}
+      </div>
     </div>
   );
 };

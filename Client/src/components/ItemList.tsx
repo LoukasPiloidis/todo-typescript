@@ -63,7 +63,7 @@ export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete, toggl
           {listValue === 'finance' && <RadioFinance item={editedItem} addFinanceItem={addFinanceItem} />}
           {listValue === 'daily' && <RadioDaily item={editedItem} addDailyItem={addDailyItem} toggleCompleteDaily={toggleCompleteDaily} />}
         </div>
-        <p className="close-btn" onClick={handleClose}>X</p>
+        <p className='close-btn' onClick={handleClose}>X</p>
       </div>}
     </div>
   );

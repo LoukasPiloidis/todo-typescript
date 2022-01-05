@@ -144,6 +144,7 @@
 }
 
 .burger__menu {
+  z-index: 1;
   position: absolute;
   background-color: rgba(11, 74, 198, 0.8);
   border: 1px solid #0B4AC6;

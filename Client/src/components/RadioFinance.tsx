@@ -43,7 +43,6 @@ export const RadioFinance: React.FC<RadioFinanceProps> = ({ item, addFinanceItem
           <p>{el.price}:-</p>
         </li>))}
       </ul>
-      <button type='submit' className='edit-info-btn'>Edit Info</button>
     </div>
   );
 };
