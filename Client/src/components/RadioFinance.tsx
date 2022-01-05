@@ -46,10 +46,9 @@ export const RadioFinance: React.FC<RadioFinanceProps> = ({ item, addFinanceItem
       </form>
       <p>{required}</p>
       <ul>
-      {items.map((el => el && 
-        <li key={Math.random().toString()} className="list-item">
-            <p>{el.title}</p>
-          <p>{el.price}:-</p>
+      {items.map((el => <li key={el?.title} className="list-item">
+          <p>{el?.title}</p>
+          <p>{el?.price}:-</p>
         </li>))}
       </ul>
     </div>
