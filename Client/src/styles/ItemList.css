@@ -32,7 +32,7 @@
   align-items: center;
 }
 
-@media only screen and (max-width: 380px) {
+@media only screen and (max-width: 450px) {
   .items__extra {
     width: 80%;
     height: 100%;
@@ -125,7 +125,7 @@
   border: 1px solid black;
 }
 
-@media only screen and (max-width: 380px) {
+@media only screen and (max-width: 450px) {
   .close-btn {
     position: absolute;
     color: white;
