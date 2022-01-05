@@ -7,9 +7,7 @@ export const Welcome: React.FC = () => {
 
   return (
     <div className="welcome__main">
-      <div>
         <Login />
-      </div>
         <Signup />
     </div>
   );

@@ -150,11 +150,17 @@
   border: 1px solid #0B4AC6;
   border-radius: 4px;
   height: 100%;
-  width: 40%;
+  width: 20%;
   padding: 4rem 0 0;
   top: 0;
   left: 0;
   overflow: scroll;
+}
+
+@media only screen and (max-width: 450px) {
+  .burger__menu {
+    width: 40%;
+  }
 }
 
 .menu__title {
