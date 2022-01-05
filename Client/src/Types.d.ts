@@ -72,6 +72,7 @@ interface ClientToServerEvents {
   removeItem: (selectedItem: object) => void;
   filterCompleted: (id: string | null) => void;
   filterPending: (id: string | null) => void;
+  filterReset: (id: string | null) => void;
   getItems: (id: string | null) => void;
   addListItem: (value: object | undefined) => void;
   addFinanceItem: (value: object | undefined) => void;

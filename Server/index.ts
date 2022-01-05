@@ -47,6 +47,11 @@ io.on("connection", async (socket: Socket) => {
 
   socket.on('filterPending', (id: string) => filterItems(false, id));
 
+  socket.on('filterReset', async(id: string) => {
+    const data = await getItem(id);
+    socket.emit('items', data);
+  });
+
   socket.on('addListItem', async (value: addListItem) => {
     await updateListItems(value);
     const data = await getItem(value.id);

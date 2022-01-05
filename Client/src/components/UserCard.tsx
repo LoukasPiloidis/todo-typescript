@@ -55,6 +55,9 @@ export const UserCard: React.FC<UserCardProps> = ({ getUser }) => {
         setItems(filteredData);
       });
     };
+    if (e.currentTarget.textContent === 'Reset') {
+      socket.emit("filterReset", id);
+    };
   };
 
   const addListItem = (value: object | undefined) => socket.emit('addListItem', value);
