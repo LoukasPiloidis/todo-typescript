@@ -15,8 +15,7 @@ const port = process.env.PORT || 4000;
 const io = new Server(port, {
     cors: {
         origin: 'https://todo-loukas.herokuapp.com/',
-        methods: ["GET", "POST"],
-        allowedHeaders: ["Access-Control-Allow-Origin", "*"],
+        allowedHeaders: ["Access-Control-Allow-Origin", "https://todo-loukas.herokuapp.com/"],
         credentials: true
     },
 });
