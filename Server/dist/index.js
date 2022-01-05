@@ -11,7 +11,12 @@ import { Server } from 'socket.io';
 import { createItem, getItem, updateStatus, deleteItem, getFilteredItems, updateListItems, updateFinanceItems, updateDailyItems, updateDailyStatus, userLogin, userSignup } from './db.js';
 const port = 4000;
 const io = new Server(port, {
-    cors: { origin: ['https://todo-loukas.herokuapp.com/'] }
+    cors: {
+        origin: 'https://todo-loukas.herokuapp.com/',
+        methods: ["GET", "POST"],
+        allowedHeaders: ["Access-Control-Allow-Origin", "*"],
+        credentials: true
+    },
 });
 const filterItems = (value, id) => __awaiter(void 0, void 0, void 0, function* () {
     const filteredItems = yield getFilteredItems(value, id);
