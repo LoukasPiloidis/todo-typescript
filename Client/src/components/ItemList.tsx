@@ -43,6 +43,7 @@ export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete, toggl
       </ul>
       {editedItem && <div className="items__extra" >
         <div className={`items__edited-main ${listValue}`}>
+          <div className="button-container"><button className='close-btn' onClick={handleClose}>X</button></div>
           <form className='form-checkbox'>
             <div className='form__div'>
               <input type='radio' name='list-selection' value='list' id="list" onClick={handleValue}></input>
@@ -63,7 +64,6 @@ export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete, toggl
           {listValue === 'finance' && <RadioFinance item={editedItem} addFinanceItem={addFinanceItem} />}
           {listValue === 'daily' && <RadioDaily item={editedItem} addDailyItem={addDailyItem} toggleCompleteDaily={toggleCompleteDaily} />}
         </div>
-        <p className='close-btn' onClick={handleClose}>X</p>
       </div>}
     </div>
   );

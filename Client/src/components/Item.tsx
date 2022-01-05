@@ -19,10 +19,10 @@ export const Item: React.FC<ItemProps> = ({ item, toggleComplete, toggleEdit, to
   return (
     <li className={`item-main ${item.complete ? "complete" : ''}`}>
       <div onClick={toggleComplete} id={item.title}>
-        <h2>
+        <h2 className="item__title">
           {item.title}
         </h2>
-        <p>{item.desc}</p>
+        <p className="item__desc">{item.desc}</p>
       </div>
       <div className='item-btn-container'>
         <button type='submit' className='edit-btn' id={item.title} onClick={toggleEdit}>Show More</button>

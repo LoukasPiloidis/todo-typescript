@@ -15,6 +15,11 @@
   margin: 0.3rem;
 }
 
+.item__title {
+  color: #0B4AC6;
+  font-weight: 900;
+}
+
 .complete {
   background-color: rgba(11, 74, 198, 0.1);
   order: 1;
@@ -35,7 +40,7 @@
   border-radius: 4px;
   background-color: #0B4AC6;
   color: white;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .remove-btn {
@@ -43,5 +48,5 @@
   border-radius: 4px;
   background-color: #0B4AC6;
   color: white;
-  font-size: 18px;
+  font-size: 14px;
 }

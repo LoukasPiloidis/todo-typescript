@@ -115,12 +115,20 @@
   }
 }
 
+.button-container {
+  height: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .close-btn {
-  position: absolute;
+  z-index: 1;
   color: white;
   background-color: #0B4AC6;
   border-radius: 4px;
-  width: 3%;
+  width: 30px;
+  height: 25px;
   text-align: center;
   font-size: 18px;
   border: 1px solid black;
