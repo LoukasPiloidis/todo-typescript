@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { authenticateUser } from "../config";
 import '../styles/Login.css';
@@ -22,6 +22,10 @@ export const Login: React.FC = () => {
   };
 
   const handleExistingSubmit = async () => await authenticateUser(username, password, handleNavigate);
+
+  useEffect(() => {
+    setTimeout(() => setFail(undefined), 2000);
+  }, [fail]);
 
   return (
     <div className="login__main">

@@ -24,10 +24,14 @@ export const Logout: React.FC<LogoutProps> = ({ getUser }) => {
   }, [])
 
   return (
-    <div className="login__main">
-      <p>Are you sure you want to log out?</p>
-      <button className="main__button" onClick={handleSubmit}>Yes</button>
-      <button className="main__button"><a href={`${localStorage.getItem('user')}`}>No</a></button>
+    <div className="logout__main">
+      <h2 className="logout__prompt">Are you sure you want to log out?</h2>
+      <div className="logout-buttons">
+        <button className="main__button" onClick={handleSubmit}>Yes</button>
+        <form className="logout__form" action={`https://todo-loukas.herokuapp.com/${localStorage.getItem('user')}`}>
+          <input type='submit' className="main__button inp" value='No' />
+        </form>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { createUser } from "../config";
 import '../styles/Signup.css';
@@ -25,6 +25,10 @@ export const Signup: React.FC = () => {
   };
   
   const handleNewSubmit = () => password === password2 ? createUser(username, password, handleNavigate) : setLoginFail('passwords do not match');
+
+  useEffect(() => {
+    setTimeout(() => setLoginFail(undefined), 2000);
+  }, [loginFail]);
 
   return (
     <div className="signup__main">
