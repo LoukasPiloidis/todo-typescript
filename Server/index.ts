@@ -21,7 +21,7 @@ import { createItem,
   updateDailyItems, 
   updateDailyStatus, 
   userLogin, 
-  userSignup } from './db';
+  userSignup } from './db.js';
 
 const port: number = 4000;
 
