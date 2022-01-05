@@ -1,7 +1,6 @@
 import React, { useState, ChangeEvent, useEffect } from "react";
 import '../styles/RadioList.css';
 
-
 interface RadioListProps {
   item: Item;
   addListItem: AddListItem;

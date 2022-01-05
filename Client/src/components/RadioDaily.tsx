@@ -2,7 +2,6 @@ import React, { useState, ChangeEvent, useEffect } from "react";
 import { DailyItem } from './DailyItem';
 import '../styles/RadioDaily.css';
 
-
 interface RadioDailyProps {
   item: Item;
   addDailyItem: AddDailyItem;

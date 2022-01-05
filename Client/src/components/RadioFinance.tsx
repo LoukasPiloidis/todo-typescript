@@ -13,7 +13,6 @@ export const RadioFinance: React.FC<RadioFinanceProps> = ({ item, addFinanceItem
   const [title, setItemElement] = useState<string>();
   const [price, setPriceElement] = useState<string>();
 
-
   const addNewItem = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     
@@ -23,7 +22,6 @@ export const RadioFinance: React.FC<RadioFinanceProps> = ({ item, addFinanceItem
   const handleItemChange = (e: ChangeEvent<HTMLInputElement>) => setItemElement(e.currentTarget.value);
 
   const handlePriceChange = (e: ChangeEvent<HTMLInputElement>) => setPriceElement(e.currentTarget.value);
-
 
   useEffect(() => {
     setItems(item.finance);

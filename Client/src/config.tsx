@@ -13,5 +13,3 @@ export const createUser = (username: string, password: string, callback: Functio
   socket.emit('signup', { username, password, id: Date.now() });
   socket.on('loginResult', (user: loginInfo | null | string) => callback(user));
 };
-
-// export const catchDuplicate = (callback: Function) => socket.on('loginFailed', () => callback());

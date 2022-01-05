@@ -41,7 +41,6 @@ const Burger: React.FC<BurgerProps> = ({ user }) => {
       <div className={`burger__menu ${!isMounted && "hidden"} ${displayMenu ? "show" : "hide"}`}>
         <ul className="menu__list">
           {items.map(item => <BurgerItem key={item.name} item={item} />)}
-          {/* {genres.map(genre => <p>key={genre} </p> )} */}
         </ul>
       </div>
     </div>

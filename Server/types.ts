@@ -6,27 +6,27 @@ export interface ServerToClientEvents {
   addItems: (newItem: object) => void;
   returnFilteredData: (filteredData: Array<Item> | unknown) => [];
   getItems: () => [] | null;
-}
+};
 
 export interface ClientToServerEvents {
   hello: () => void;
   filterCompleted: () => void;
   filterPending: () => void;
-}
+};
 
 export interface InterServerEvents {
   ping: () => void;
-}
+};
 
 export interface SocketData {
   name: string;
   age: number;
-}
+};
 
 export interface removeObject {
   title: string
   id: string
-}
+};
 
 
 export type Item = {
@@ -81,8 +81,4 @@ export type userSignupInfo = {
   username: string;
   password: string;
   id: number;
-};
-
-export const EVENTS = {
-  ITEMS: "ITEMS"
 };

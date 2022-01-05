@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import '../styles/BurgerItem.css';
 
 interface BurgerItemProps {
@@ -7,18 +6,6 @@ interface BurgerItemProps {
 };
 
 export const BurgerItem: React.FC<BurgerItemProps> = ({ item }) => {
-
-  const navigate = useNavigate();
-
-  // const handleClick = async e => {
-  //   e.preventDefault();
-  //   const games = await getData();
-  //   dispatch(
-  //     setSearchResults(games)
-  //   );
-  //   navigate(`/category/${genre.name}`);
-  //   clickEvent();
-  // }
   
   return (
     <li className="genre-list">
@@ -26,5 +13,3 @@ export const BurgerItem: React.FC<BurgerItemProps> = ({ item }) => {
     </li>
   );
 };
-
-export default BurgerItem;

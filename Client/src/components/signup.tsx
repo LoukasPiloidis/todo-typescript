@@ -7,7 +7,6 @@ export const Signup: React.FC = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassname] = useState<string>('');
   const [password2, setPass2name] = useState<string>('');
-  const [passError, setPassError] = useState<string>();
   const [loginFail, setLoginFail] = useState<string | undefined>();
 
   const navigate = useNavigate();
@@ -24,19 +23,15 @@ export const Signup: React.FC = () => {
       return navigate(user.username);
     }; 
   };
-
-  // const handleExistingSubmit = async () => await authenticateUser(username, password, handleNavigate);
-
-    
-  const handleNewSubmit = () => password === password2 ? createUser(username, password, handleNavigate) : setPassError('passwords do not match');
+  
+  const handleNewSubmit = () => password === password2 ? createUser(username, password, handleNavigate) : setLoginFail('passwords do not match');
 
   return (
     <div className="signup__main">
       <label className="main__title">Sign Up</label>
       <input type='text' className="main__input" placeholder="enter a username" onChange={handleUserChange}></input>
-      <input type='text' className="main__input" placeholder="enter a password" onChange={handlePassChange}></input>
-      <input type='text' className="main__input" placeholder="reenter a password" onChange={handlePass2Change}></input>
-      <p>{passError}</p>
+      <input type='password' className="main__input" placeholder="enter a password" onChange={handlePassChange}></input>
+      <input type='password' className="main__input" placeholder="reenter a password" onChange={handlePass2Change}></input>
       <p>{loginFail}</p>
       <button type='submit' className="main__button" onClick={handleNewSubmit}>Create</button>
     </div>
