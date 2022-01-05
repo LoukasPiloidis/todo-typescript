@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
-import { useParams } from "react-router";
 import { AddItemForm } from "./AddItemForm";
 import { ItemList } from "./ItemList";
 import '../styles/UserCard.css';
-import { DailyItem } from "./DailyItem";
 
 const SOCKET_URL = process.env.SOCKET_URL || 'http://localhost:4000';
 
@@ -73,7 +71,7 @@ export const UserCard: React.FC<UserCardProps> = ({ getUser }) => {
   
   return (
     <div>
-      <AddItemForm addItem={addItem} />
+      <AddItemForm addItem={addItem} items={items} />
       <div className="container-filter">
         <p className="filter-button" onClick={handleToggleButton} >Completed</p>
         <p className="filter-button" onClick={handleToggleButton} >Pending</p>
