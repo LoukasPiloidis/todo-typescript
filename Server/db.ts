@@ -1,4 +1,5 @@
 import { MongoClient } from 'mongodb';
+import bcrypt from 'bcrypt';
 import { config } from 'dotenv';
 import { Item, 
   addListItem, 
@@ -91,9 +92,20 @@ export const updateListStatus = async (item: toggleDailyItem) => {
 
 export const userLogin = async (item: userLoginInfo) => {
   await client.connect();
-  const user = await client.db("Todo-typescript").collection("Users").findOne({username: item.userName, password: item.pass});
-  await client.close();
-  return user;
+  try {
+    const user = await client.db("Todo-typescript").collection("Users").findOne({username: item.userName});
+    await client.close();
+    if (user) {
+      const validate = await bcrypt.compare(item.pass, user?.password);
+      if (validate) {
+        const userInfo = {username: user.username, id: user.id}
+         return userInfo
+        };
+    };
+    return { username: 'failed to login' };
+  } catch(err) {
+    return (err);
+  };
 };
 
 export const userSignup = async (item: userSignupInfo) => {

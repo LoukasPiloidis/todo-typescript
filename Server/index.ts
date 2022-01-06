@@ -1,4 +1,5 @@
 import { Server, Socket } from 'socket.io';
+import bcrypt from 'bcrypt';
 import { config } from 'dotenv';
 import { Item, 
   ClientToServerEvents, 
@@ -35,6 +36,11 @@ const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEve
     credentials: true
   },
 });
+
+const hash = async (password: string) => {
+  const hashedPassword = await bcrypt.hash(password, 10);
+  return hashedPassword;
+};
 
 const filterItems =  async(value: boolean, id: string) => {
   
@@ -110,10 +116,13 @@ io.on("connection", async (socket: Socket) => {
 
   socket.on('login', async (item: userLoginInfo) => {
     const user = await userLogin(item);
+    console.log(user);
     socket.emit('loginResult', user);
   });
 
   socket.on('signup', async (item: userSignupInfo) => {
+    const hashedPass = await hash(item.password);
+    item.password = hashedPass;
     const signup = await userSignup(item);
     if (signup === 'duplicate value') {
       return socket.emit('loginResult', {username: 'This user already exists' });

@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { MongoClient } from 'mongodb';
+import bcrypt from 'bcrypt';
 import { config } from 'dotenv';
 config();
 const uri = `mongodb+srv://Utes:${process.env.MONGO_PASS}@cluster0.qt1uh.mongodb.net/Todo-typescript?retryWrites=true&w=majority`;
@@ -82,9 +83,24 @@ export const updateListStatus = (item) => __awaiter(void 0, void 0, void 0, func
 });
 export const userLogin = (item) => __awaiter(void 0, void 0, void 0, function* () {
     yield client.connect();
-    const user = yield client.db("Todo-typescript").collection("Users").findOne({ username: item.userName, password: item.pass });
-    yield client.close();
-    return user;
+    try {
+        const user = yield client.db("Todo-typescript").collection("Users").findOne({ username: item.userName });
+        yield client.close();
+        if (user) {
+            const validate = yield bcrypt.compare(item.pass, user === null || user === void 0 ? void 0 : user.password);
+            if (validate) {
+                const userInfo = { username: user.username, id: user.id };
+                return userInfo;
+            }
+            ;
+        }
+        ;
+        return { username: 'failed to login' };
+    }
+    catch (err) {
+        return (err);
+    }
+    ;
 });
 export const userSignup = (item) => __awaiter(void 0, void 0, void 0, function* () {
     yield client.connect();

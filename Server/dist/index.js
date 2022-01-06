@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { Server } from 'socket.io';
+import bcrypt from 'bcrypt';
 import { config } from 'dotenv';
 import { createItem, getItem, updateStatus, deleteItem, getFilteredItems, updateListItems, updateFinanceItems, updateDailyItems, updateDailyStatus, updateListStatus, userLogin, userSignup } from './db.js';
 config();
@@ -17,6 +18,10 @@ const io = new Server(port, {
         allowedHeaders: ["Access-Control-Allow-Origin", "*"],
         credentials: true
     },
+});
+const hash = (password) => __awaiter(void 0, void 0, void 0, function* () {
+    const hashedPassword = yield bcrypt.hash(password, 10);
+    return hashedPassword;
 });
 const filterItems = (value, id) => __awaiter(void 0, void 0, void 0, function* () {
     const filteredItems = yield getFilteredItems(value, id);
@@ -76,9 +81,12 @@ io.on("connection", (socket) => __awaiter(void 0, void 0, void 0, function* () {
     }));
     socket.on('login', (item) => __awaiter(void 0, void 0, void 0, function* () {
         const user = yield userLogin(item);
+        console.log(user);
         socket.emit('loginResult', user);
     }));
     socket.on('signup', (item) => __awaiter(void 0, void 0, void 0, function* () {
+        const hashedPass = yield hash(item.password);
+        item.password = hashedPass;
         const signup = yield userSignup(item);
         if (signup === 'duplicate value') {
             return socket.emit('loginResult', { username: 'This user already exists' });

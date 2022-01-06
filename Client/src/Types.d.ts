@@ -69,7 +69,7 @@ interface ServerToClientEvents {
   withAck: (d: string, callback: (e: number) => void) => void;
   items: (itemList: Array<Item>) => void;
   returnFilteredData: (filteredData: Array<Item>) => void;
-  loginResult: (user: loginInfo | null) => Function | void;
+  loginResult: (user: loginInfo) => Function | void;
   loginFailed: () => void;
 };
 
