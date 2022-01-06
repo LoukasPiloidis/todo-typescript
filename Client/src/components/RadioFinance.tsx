@@ -47,8 +47,10 @@ export const RadioFinance: React.FC<RadioFinanceProps> = ({ item, addFinanceItem
       <p>{required}</p>
       <ul>
       {items.map((el => <li key={el?.title} className="list-item">
-          <p>{el?.title}</p>
-          <p>{el?.price}:-</p>
+        <div className="list-wrapper">
+          <p className="item-text">{el?.title}</p>
+          <p className="item-text">{el?.price}:-</p>
+        </div>
         </li>))}
       </ul>
     </div>

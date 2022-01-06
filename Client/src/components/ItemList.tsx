@@ -60,7 +60,7 @@ export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete, toggl
             </div>
           </form>
           <h2>{editedItem.title}</h2>
-          <p>{editedItem.desc}</p>
+          <p className="edited-desc">{editedItem.desc}</p>
           {listValue === 'list' && <RadioList item={editedItem} addListItem={addListItem} toggleCompleteList={toggleCompleteList} />}
           {listValue === 'finance' && <RadioFinance item={editedItem} addFinanceItem={addFinanceItem} />}
           {listValue === 'daily' && <RadioDaily item={editedItem} addDailyItem={addDailyItem} toggleCompleteDaily={toggleCompleteDaily} />}

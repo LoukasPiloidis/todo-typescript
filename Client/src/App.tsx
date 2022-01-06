@@ -16,7 +16,7 @@ const App = () => {
   return(
     <React.Fragment>
         <Burger user={user} />
-        <h1>Todo app on Steroids</h1>
+        <h1>To Do on Steroids</h1>
         <Routes>
           <Route path='/' element={<Welcome />}></Route>
           <Route path="/logout" element={<Logout getUser={getUser} />}></Route>
