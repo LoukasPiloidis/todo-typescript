@@ -24,7 +24,15 @@ export const Signup: React.FC = () => {
     }; 
   };
   
-  const handleNewSubmit = () => password === password2 ? createUser(username, password, handleNavigate) : setLoginFail('passwords do not match');
+  const handleNewSubmit = () => {
+    if (password !== password2) {
+      return setLoginFail('passwords do not match');
+    };
+    if (username.length < 1 && password.length < 1) {
+      return setLoginFail('All fields are required');
+    };
+    return createUser(username, password, handleNavigate);
+  };
 
   useEffect(() => {
     setTimeout(() => setLoginFail(undefined), 2000);
