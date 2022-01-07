@@ -56,7 +56,7 @@ export const ItemList: React.FC<ItemListProps> = ({ items, toggleComplete, toggl
             </div>
             <div className='form__div'>
               <input type='radio' name='list-selection' value='daily' onClick={handleValue}></input>
-              <label>Daily</label>
+              <label>Tasks</label>
             </div>
           </form>
           <h2>{editedItem.title}</h2>

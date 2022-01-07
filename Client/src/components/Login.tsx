@@ -16,7 +16,7 @@ export const Login: React.FC = () => {
   const handleNavigate = (user: loginInfo) => {
     if (user.username === 'failed to login') { return setFail('login failed') };
     if (user.id) { 
-      localStorage.setItem('user', user.username);
+      sessionStorage.setItem('user', user.username);
       return navigate(`/${user.username}`);
     }; 
   };

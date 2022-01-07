@@ -7,7 +7,7 @@ interface AboutProps {
 
 export const About: React.FC<AboutProps> = ({ getUser }) => {
 
-  const id: string | null = localStorage.getItem('user');
+  const id: string | null = sessionStorage.getItem('user');
 
   useEffect(() => {
     getUser(id);

@@ -17,7 +17,7 @@ interface UserCardProps {
 export const UserCard: React.FC<UserCardProps> = ({ getUser }) => {
   const [items, setItems] = useState<Array<Item>>([]);
 
-  const id: string | null = localStorage.getItem('user');
+  const id: string | null = sessionStorage.getItem('user');
 
   socket.on("items", (itemList: Array<Item>) => setItems(itemList));
 
@@ -79,7 +79,8 @@ export const UserCard: React.FC<UserCardProps> = ({ getUser }) => {
   }, []);
   
   return (
-    <div>
+    <div className="user-card">
+      <h3 className="greet">Signed in as: {id}</h3>
       <AddItemForm addItem={addItem} items={items} />
       <div className="container-filter">
         <p className="filter-button" onClick={handleToggleButton} >Completed</p>

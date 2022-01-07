@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from 'react-router-dom';
 import { Welcome } from './components/Welcome';
 import './styles/App.css';
@@ -13,6 +13,13 @@ const App = () => {
 
   const getUser = (user: string | null) => setUser(user);
 
+  const id = sessionStorage.getItem('user');
+
+  useEffect(() => {
+    getUser(id);
+    console.log('hi');
+  }, []);
+
   return(
     <React.Fragment>
         <Burger user={user} />
@@ -26,6 +33,6 @@ const App = () => {
         </Routes>
     </React.Fragment>
   ) 
-}
+};
 
 export default App;

@@ -19,7 +19,7 @@ export const Signup: React.FC = () => {
     if (!user) { return setLoginFail('login failed') };
     if (user.username === 'This user already exists') { return setLoginFail(user.username)}
     if (user) { 
-      localStorage.setItem('user', user.username);
+      sessionStorage.setItem('user', user.username);
       return navigate(user.username);
     }; 
   };
@@ -28,7 +28,7 @@ export const Signup: React.FC = () => {
     if (password !== password2) {
       return setLoginFail('passwords do not match');
     };
-    if (username.length < 1 && password.length < 1) {
+    if (username.length < 1 || password.length < 1) {
       return setLoginFail('All fields are required');
     };
     return createUser(username, password, handleNavigate);

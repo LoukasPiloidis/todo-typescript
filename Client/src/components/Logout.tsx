@@ -16,12 +16,12 @@ export const Logout: React.FC<LogoutProps> = ({ getUser }) => {
     if (button === 'No') {
       return navigate(`/${user}`);;
     }
-    localStorage.removeItem('user');
+    sessionStorage.removeItem('user');
     navigate('/');
   };
 
   useEffect(() => {
-    setUser(localStorage.getItem('user'));
+    setUser(sessionStorage.getItem('user'));
     getUser(user);
   }, [])
 

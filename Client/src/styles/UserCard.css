@@ -13,6 +13,17 @@
   }
 }
 
+.user-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 18px;
+}
+
+.greet {
+  margin-bottom: 2rem;
+}
+
 .filter-button {
   color: #0B4AC6;
   font-size: 14px;
