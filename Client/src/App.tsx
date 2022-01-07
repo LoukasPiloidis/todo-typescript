@@ -21,7 +21,7 @@ const App = () => {
           <Route path='/' element={<Welcome />}></Route>
           <Route path="/logout" element={<Logout getUser={getUser} />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/about" element={<About />}></Route>
+          <Route path="/about" element={<About getUser={getUser} />}></Route>
           <Route path="/:id" element={<UserCard getUser={getUser} />}></Route>
         </Routes>
     </React.Fragment>

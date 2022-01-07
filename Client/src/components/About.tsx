@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import '../styles/About.css';
 
-export const About: React.FC = () => {
+interface AboutProps {
+  getUser: GetUser;
+};
+
+export const About: React.FC<AboutProps> = ({ getUser }) => {
+
+  const id: string | null = localStorage.getItem('user');
+
+  useEffect(() => {
+    getUser(id);
+  }, []);
 
   return (
     <div className="about-main">
