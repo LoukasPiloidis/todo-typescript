@@ -75,6 +75,7 @@ io.on("connection", async (socket) => {
         socket.emit('loginResult', user);
     });
     socket.on('signup', async (item) => {
+        const prevPass = item.password;
         const hashedPass = await hash(item.password);
         item.password = hashedPass;
         const signup = await userSignup(item);
@@ -82,7 +83,7 @@ io.on("connection", async (socket) => {
             return socket.emit('loginResult', { username: 'This user already exists' });
         }
         ;
-        const user = await userLogin({ userName: item.username, pass: item.password });
+        const user = await userLogin({ userName: item.username, pass: prevPass });
         socket.emit('loginResult', user);
     });
 });
