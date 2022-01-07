@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/Welcome.css';
-import { Signup } from "./Signup";
+import { Signup } from "./signup";
 
 export const Welcome: React.FC = () => {
 
