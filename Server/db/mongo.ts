@@ -1,25 +1,22 @@
-import { itemsCollection, usersCollection } from './config.js';
 import bcrypt from 'bcrypt';
-import { Collection } from 'mongodb';
+import { MongoClient } from 'mongodb';
+import { config } from 'dotenv';
 
-export const createItem = async (item: Item, test?:Collection) => {
-  if (test) {
-    await test.insertOne(item);
-  }
+config();
+
+const uri = `mongodb+srv://Utes:${process.env.MONGO_PASS}@cluster0.qt1uh.mongodb.net/Todo-typescript?retryWrites=true&w=majority`;
+const client = new MongoClient(uri);
+await client.connect();
+
+const db = client.db(process.env.DB_NAME || process.env.DB_NAME_TEST);
+export const itemsCollection = db.collection(process.env.DB_COLLECTION || process.env.DB_COLLECTION_TEST);
+export const usersCollection = db.collection(process.env.DB_COLLECTION2 || process.env.DB_COLLECTION2_TEST);
+
+export const createItem = async (item: Item) => {
   await itemsCollection.insertOne(item);
 };
 
-export const getItem = async (id: string, test?:Collection) => {
-  if (test) {
-    return new Promise((resolve, reject) => {
-      test.find({id}).toArray((err, data) => {
-        if (err) {
-        return reject(err);
-        };
-      return resolve(data);
-      });
-    });
-  }
+export const getItem = async (id: string) => {
   return new Promise((resolve, reject) => {
     itemsCollection.find({id}).toArray((err, data) => {
       if (err) {
