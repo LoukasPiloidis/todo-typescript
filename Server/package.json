@@ -4,10 +4,8 @@
   "description": "",
   "main": "dist/index.js",
   "type": "module",
-  "jest": {
-    "preset": "@shelf/jest-mongodb"
-  },
   "scripts": {
+    "test": "jest",
     "dev": "nodemon main",
     "build": "tsc",
     "start": "node dist/index.js"
@@ -17,19 +15,25 @@
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.16.7",
-    "@babel/preset-env": "^7.16.7",
     "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
+    "jest": "^27.4.7",
     "mongodb": "^4.2.2",
     "socket.io": "^4.4.0",
+    "ts-jest": "^27.1.2",
     "tsc": "^2.0.3"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.16.7",
+    "@shelf/jest-mongodb": "^2.2.0",
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.13",
+    "@types/jest": "^27.4.0",
+    "@types/mongodb": "^4.0.7",
     "@types/node": "^17.0.8",
-    "jest": "^27.4.6",
-    "nodemon": "^2.0.15"
+    "babel-jest": "^27.4.6",
+    "nodemon": "^2.0.15",
+    "regenerator-runtime": "^0.13.9"
   }
 }

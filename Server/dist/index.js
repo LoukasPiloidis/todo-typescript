@@ -21,6 +21,7 @@ const io = new Server(port, {
 });
 const hash = (password) => __awaiter(void 0, void 0, void 0, function* () {
     const hashedPassword = yield bcrypt.hash(password, 10);
+    console.log(hashedPassword);
     return hashedPassword;
 });
 const filterItems = (value, id) => __awaiter(void 0, void 0, void 0, function* () {

@@ -39,6 +39,7 @@ const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEve
 
 const hash = async (password: string) => {
   const hashedPassword = await bcrypt.hash(password, 10);
+  console.log(hashedPassword);
   return hashedPassword;
 };
 
