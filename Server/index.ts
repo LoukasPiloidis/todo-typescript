@@ -1,30 +1,7 @@
 import { Server, Socket } from 'socket.io';
 import bcrypt from 'bcrypt';
 import { config } from 'dotenv';
-import { Item, 
-  ClientToServerEvents, 
-  ServerToClientEvents, 
-  InterServerEvents, 
-  SocketData, 
-  removeObject, 
-  addListItem, 
-  addFinanceItem, 
-  addDailyItem, 
-  toggleDailyItem, 
-  userLoginInfo, 
-  userSignupInfo } from './types';
-import { createItem, 
-  getItem, 
-  updateStatus, 
-  deleteItem, 
-  getFilteredItems, 
-  updateListItems, 
-  updateFinanceItems, 
-  updateDailyItems, 
-  updateDailyStatus, 
-  updateListStatus,
-  userLogin, 
-  userSignup } from './db.js';
+import { createItem, getItem, updateStatus, deleteItem, getFilteredItems, updateListItems, updateFinanceItems, updateDailyItems, updateDailyStatus, updateListStatus,userLogin, userSignup } from './db/mongo.js';
 
 config();
 
@@ -39,19 +16,15 @@ const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEve
 
 const hash = async (password: string) => {
   const hashedPassword = await bcrypt.hash(password, 10);
-  console.log(hashedPassword);
   return hashedPassword;
 };
 
 const filterItems =  async(value: boolean, id: string) => {
-  
   const filteredItems: Array<Item> | unknown = await getFilteredItems(value, id);
-  
   io.emit('returnFilteredData', filteredItems);
 };
 
 io.on("connection", async (socket: Socket) => {
-
   socket.on('getItems', async (id) => {
     const data = await getItem(id);
     io.emit('items', data);
@@ -117,7 +90,6 @@ io.on("connection", async (socket: Socket) => {
 
   socket.on('login', async (item: userLoginInfo) => {
     const user = await userLogin(item);
-    console.log(user);
     socket.emit('loginResult', user);
   });
 
