@@ -17,7 +17,6 @@ const App = () => {
 
   useEffect(() => {
     getUser(id);
-    console.log('hi');
   }, []);
 
   return(
