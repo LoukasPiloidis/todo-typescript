@@ -42,5 +42,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-test-renderer": "^17.0.1",
+    "i": "^0.3.7",
+    "npm": "^8.3.0",
+    "react-test-renderer": "^17.0.2"
   }
 }
