@@ -36,7 +36,7 @@ export const getFilteredItems = async (status: boolean, id: string) => {
     return resolve(data);
     });
   });
-}
+};
 
 export const updateStatus = async (item: Item) => {
   await itemsCollection.updateOne({ title: item.title }, { $set: { complete: !item.complete }});
