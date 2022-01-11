@@ -9,7 +9,7 @@ export const BurgerItem: React.FC<BurgerItemProps> = ({ item }) => {
   
   return (
     <li className="genre-list">
-        <a href={item.url} className="genre-list__info">{item.name}</a>
+      <a href={item.url} className="genre-list__info">{item.name}</a>
     </li>
   );
 };
