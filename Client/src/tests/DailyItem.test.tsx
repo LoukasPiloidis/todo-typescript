@@ -1,7 +1,7 @@
 import { DailyItem } from '../components/DailyItem';
 import * as ShallowRenderer from 'react-test-renderer/shallow';
 
-describe('testing BurgerItem.tsx', () => {
+describe('testing DailyItem.tsx', () => {
   const item: Item = {title: 'test', complete: false, id: '1', };
   const parentItem = '';
   const toggleCompleteDaily = () => {};
