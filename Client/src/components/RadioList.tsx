@@ -32,7 +32,7 @@ export const RadioList: React.FC<RadioListProps> = ({ item, addListItem, toggleC
         <button className='add-item-btn' onClick={addNewItem} id={item.title}>+</button>
       </form>
       <ul>
-        {items.map((el => <li className={`${el?.complete ? "completed" : ''}`} key={Math.random().toString()} onClick={handleComplete} >{el?.element}</li>))}
+        {items?.map((el => <li className={`${el?.complete ? "completed" : ''}`} key={Math.random().toString()} onClick={handleComplete} >{el?.element}</li>))}
       </ul>
     </div>
   );

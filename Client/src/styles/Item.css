@@ -25,6 +25,11 @@
   order: 1;
 }
 
+.alter {
+  position: absolute;
+  background-color: blueviolet;
+}
+
 .complete h2, .complete p {
   text-decoration: line-through;
 }
