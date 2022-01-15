@@ -18,7 +18,7 @@ export const Item: React.FC<ItemProps> = ({ item, toggleComplete, toggleEdit, to
   };
 
   useEffect(() => {
-    if (item.list.length > 1 && item.list.every((el: listItem) => el.complete)) {
+    if (item.list.length > 0 && item.list.every((el: listItem) => el.complete)) {
       return setCompletedList(true);
     };
     setCompletedList(false);
