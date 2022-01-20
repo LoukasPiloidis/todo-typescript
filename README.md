@@ -6,9 +6,9 @@
   4. Crossing out all list elements, the main item is automatically crossed out.
   5. Different interface and input data based on which radio menu a user clicks.
 
-# Technologies used
+## Technologies used
   1. Front End: React/typescript, socket.io-client
   2. Back End: NodeJS/typescript, socket.io
   3. Database: MongoDB
 
-*Beware that first load may be slow because of heroku free dynos*
+**Beware that first load may be slow because of heroku free dynos**
